@@ -1,0 +1,17 @@
+<%= render 'system_nav' %>
+<h1>Users</h1>
+
+<% @statuses.each do |status| %>
+  <%= link_to(status, "/system/users/#{status}", class: "#{status == @status ? 'highlight' : ''}") %>
+<% end %>
+<div class='flex sb'>
+  <div>
+    <h3><%= @status %></h3>
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+    <% @records.each do |user| %>
+      <div class='flex'>
+        <%= link_to(user.email, admin_account_path(user)) %>
+      </div>
+    <% end %>
+  </div>
+</div>

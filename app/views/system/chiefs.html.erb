@@ -1,0 +1,25 @@
+<%= render 'system_nav' %>
+<h1>Chiefs</h1>
+
+<% @statuses.each do |status| %>
+  <%= link_to(status, "/system/chiefs/#{status}", class: "#{status == @status ? 'highlight' : ''}") %>
+<% end %>
+<div class='flex sb'>
+  <div>
+    <h3><%= @status %></h3>
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+    <% @records.each do |chief| %>
+      <div class='flex sb'>
+        <div class='flex-1'>
+          <%= link_to(chief.full_name, chief_path(chief)) %>
+        </div>
+        <div class='flex-1 text-center'>
+          <%= chief.title_small %>
+        </div>
+        <div class='flex-1'>
+          @ <%= link_to(chief.company.name, company_path(chief.company)) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

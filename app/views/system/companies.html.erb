@@ -1,0 +1,18 @@
+<%= render 'system_nav' %>
+<h1>Companies</h1>
+
+<% @statuses.each do |status| %>
+  <% match =  status == @status %>
+  <%= link_to(status, "/system/companies/#{status}", class: "#{ match ? 'highlight' : ''}", disabled: !match) %>
+<% end %>
+<div class='flex sb'>
+  <div>
+    <h3><%= @status %></h3>
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+    <% @records.each do |company| %>
+      <div class='flex'>
+        <%= link_to(company.name, company_path(company)) %>
+      </div>
+    <% end %>
+  </div>
+</div>

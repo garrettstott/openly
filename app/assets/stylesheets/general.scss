@@ -1,0 +1,53 @@
+#landing {
+  .hero, .start-section {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .hero {
+    background-image: url('/assets/LandingHero.png');
+    margin: -4px -16px 0 -16px;
+    h1 {
+      margin: 0;
+    }
+    form {
+      input {
+        background: $White;
+        width: 100%;
+      }
+    }
+  }
+  .hero-section {
+    text-align: center;
+    color: $White;
+    margin: auto;
+    max-width: 700px;
+    width: 100%;
+  }
+  .section {
+    min-height: 40vh;
+  }
+  .info-section {
+    margin: 0 auto;
+    width: 98%;
+    position: relative;
+    .about {
+      div {
+        width: 27vw;
+      }
+    }
+    .learn-more {
+      position: absolute;
+      margin: auto auto 16px auto;
+      left: 0; right: 0; bottom: 0;
+    }
+  }
+  .start-section {
+    background-image: url('/assets/LandingStart.png');
+    margin: 0 -16px;
+  }
+  h1 {
+    width: 100%;
+    text-align: center;
+  }
+}

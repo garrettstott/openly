@@ -1,0 +1,21 @@
+<div id='company-index'>
+  <div class='text-center section'>
+    <h1>Companies</h1>
+    <form id='company-search'>
+      <input type="search" placeholder="Search" data-behavior="autocomplete"/>
+    </form>
+  </div>
+  <div class='flex flex-wrap'>
+    <% @companies.each do |company| %>
+      <%= link_to(company_path(company), class: 'flex-1 card') do %>
+        <h3><%= company.name %></h3>
+        <div class='flex flex-column card-section'>
+          <%= render('ratings/stars', record: company) %>
+          (<%= company.review_count %> Reviews)
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  <%= link_to('Add A Company', new_company_path, class: 'btn') %>
+</div>

@@ -1,0 +1,37 @@
+<% reviews.each do |review| %>
+  <div class='flex-1 section card'>
+    <div class='flex sb'>
+      <div>
+        User: <%= review.user.username %>
+      </div>
+      <div>
+        <%= review.nice_date(review.created_at) %>
+      </div>
+    </div>
+    <div class='flex flex-column'>
+      <%= render('ratings/stars', record: review) %>
+    </div>
+    <div>
+      <%= review.message %>
+    </div>
+    <div>
+      Helpful <%= review.thumbs %> <i class='fa fa-thumbs-o-up'></i>
+    </div>
+    <!--    OWNER SECTION    -->
+    <% if account && current_user == review.user %>
+      <div>
+        Approved? <%= review.approved_icon %>
+      </div>
+      <div>
+        Denied? <%= review.denied_icon %>
+      </div>
+      <div>
+        <% if review.denied %>
+          <%= link_to('Edit And Dispute', edit_review_path(review)) %>
+        <% else %>
+          <%= link_to('Edit', edit_review_path(review)) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

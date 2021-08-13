@@ -1,0 +1,17 @@
+<%= render 'system_nav' %>
+<h1>Reviews</h1>
+
+<% @statuses.each do |status| %>
+  <%= link_to(status, "/system/reviews/#{status}", class: "#{status == @status ? 'highlight' : ''}") %>
+<% end %>
+<div class='flex sb'>
+  <div>
+    <h3><%= @status %></h3>
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+    <% @records.each do |review| %>
+      <div class='flex'>
+        <%= link_to(review.review_for, review_path(review)) %>
+      </div>
+    <% end %>
+  </div>
+</div>

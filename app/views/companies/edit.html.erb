@@ -1,0 +1,7 @@
+<%= link_to(company_path(@company), class: 'btn') do %>
+  <i class='fa fa-arrow-left'></i> <%= @company.name %>
+<% end %>
+
+<h1>Edit Company</h1>
+
+<%= render('form') %>

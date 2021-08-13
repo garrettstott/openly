@@ -1,0 +1,10 @@
+<h1>Edit Review</h1>
+<div class='flex'>
+  <div class='flex-2'>
+    <%= render('form') %>
+  </div>
+  <div class='flex flex-column flex-1'>
+    <%= render('notes/notes', record: @review) %>
+  </div>
+</div>
+

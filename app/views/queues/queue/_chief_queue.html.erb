@@ -1,0 +1,25 @@
+<h3>Chiefs Queue (<%= @total %>)</h3>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+<div class='flex flex-column'>
+  <% @items.each do |chief| %>
+    <div class='card width-50 mb-8'>
+      <div class='flex sb mb-8'>
+        <div>
+          <%= chief.full_name %>
+        </div>
+        <div>
+          <%= chief.title_nice %>
+        </div>
+      </div>
+      <div class='flex sb'>
+        <div>
+          <%= link_to(chief.company.name, company_path(chief.company)) %>
+        </div>
+        <div>
+          <%= link_to('Review', chief_path(chief), class: 'btn') %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>

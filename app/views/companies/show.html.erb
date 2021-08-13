@@ -1,0 +1,89 @@
+<div class='flex sb'>
+  <div>
+    <div class='flex sb mt-8'>
+      <%= link_to("All Companies", companies_path, class: 'btn') %>
+      <!--      TODO add note      -->
+      <% if admin_signed_in? %>
+        <div class='flex'>
+          <% if @company.approved %>
+            <%= @company.approved_icon %> Approved
+            <%= link_to('Deny', company_deny_path(@company), method: :put, class: 'btn btn-danger') %>
+          <% elsif @company.denied %>
+            <%= @company.approved_icon %> Denied
+            <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
+          <% else %>
+            Awaiting
+            <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
+          <% end %>
+          <%= link_to('EDIT', edit_company_path(@company), class: 'btn') %>
+        </div>
+      <% end %>
+    </div>
+    <h1><%= @company.name %></h1>
+    <div>
+      <div class='flex'>
+        <div class='flex-075'>Website</div>
+        <div class='flex-9'><%= link_to(@company.website, @company.website, target: '_blank') %></div>
+      </div>
+      <div class='flex'>
+        <div class='flex-075'>Founded</div>
+        <div class='flex-9'><%= @company.founded %></div>
+      </div>
+      <div class='flex'>
+        <div class='flex-075'>Industry</div>
+        <div class='flex-9'><%= @company.industry %></div>
+      </div>
+      <div class='flex'>
+        <div class='flex-075'>Employees</div>
+        <div class='flex-9'><%= number_with_precision(@company.employee_count, precision: 0, delimiter: ',') %></div>
+      </div>
+      <div class='flex flex-column'>
+        <div>Location <%= @company.location %></div>
+      </div>
+      <div class='flex flex-column'>
+        <div>About</div>
+        <div><%= @company.about %></div>
+      </div>
+      <div class='flex flex-column'>
+        <div>Jobs: <%= @company.job_listings.count %></div>
+        <div><%= link_to('View Job Listings', company_job_listings_path(@company.name), class: 'btn') %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='flex'>
+  <div class='flex flex-column width-50'>
+    <%= render "ratings/stars", record: @company %>
+    (<%= @company.review_count %> Reviews)
+  </div>
+  <% if admin_signed_in? %>
+    <div class='width-50'>
+      <%= render('notes/notes', record: @company) %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to("Review #{@company.name}", new_review_path(@company), class: 'btn') %>
+
+<h3>Leadership</h3>
+<div class='flex flex-row'>
+  <% @company.approved_current_chiefs.each do |chief| %>
+    <div class='section mr-16'>
+      <h4>
+        <%= link_to(chief.full_name, chief_path(chief)) %>
+      </h4>
+      <h5><%= chief.title_nice %></h5>
+      <div class='flex flex-column'>
+        <%= render "ratings/stars", record: chief %>
+        (<%= chief.review_count %> Reviews) <%= link_to("Review #{chief.title_small}", new_chief_review_path(@company, chief)) %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= link_to('Add Leadership', new_chief_path(@company)) %>
+
+<h3>Reviews</h3>
+<div class='flex flex-column width-50'>
+  <%= render('reviews/reviews', reviews: @company.approved_reviews, account: false) %>
+</div>

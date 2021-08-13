@@ -1,0 +1,46 @@
+<div class='flex sb'>
+  <div>
+    <h1>Account</h1>
+  </div>
+  <% if uber_signed_in? %>
+    <div class='mt-16'>
+      <%= link_to('Deny', user_deny_path(@user), class: 'btn', data: {confirm: 'Are You Sure?'}) %>
+      TODO add note
+    </div>
+  <% end %>
+</div>
+
+<%= @user.email %>
+<% if current_user == @user %>
+  <%= link_to('Update Information', edit_user_registration_path) %>
+<% end %>
+
+<div class='flex'>
+  <div class='flex-1'>
+    <h3>Employment History</h3>
+    <% @user.list_employment.each do |employment| %>
+      <div class='card'>
+        <div>
+          <%= link_to(employment.company.name, company_path(employment.company)) %>
+        </div>
+        <div>
+          <%= employment.nice_date(employment.start_date) %>
+          -
+          <% if employment.current %>
+            Currently Employer <%= employment.boolean_to_icon(employment.current) %>
+          <% else %>
+            <%= employment.nice_date(employment.end_date) %>
+          <% end %>
+        </div>
+        <div><%= employment.job_title %></div>
+        <div>$<%= number_with_precision(employment.salary, precision: 0, delimiter: ',') %></div>
+      </div>
+    <% end %>
+    <button class='btn'># TODO Add Employment</button>
+  </div>
+
+  <div class='flex-3'>
+    <h3>Reviews</h3>
+    <%= render('reviews/reviews', reviews: @user.reviews, account: true) %>
+  </div>
+</div>

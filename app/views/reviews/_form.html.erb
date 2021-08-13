@@ -1,0 +1,84 @@
+<%= form_with model: @review do |f| %>
+  <%= f.hidden_field :company_id, value: @review.company_id %>
+  <%= f.hidden_field :user_id, value: @review.user_id %>
+  <%= f.hidden_field :chief_id, value: @review.chief_id %>
+
+  <%= f.fields_for :ratings do |ff| %>
+    <%= ff.hidden_field :style, value: ff.object.style %>
+    <%= ff.label ff.object.style %>
+    <%= ff.number_field :score, id: ff.object.style, class: 'hidden' %>
+    <%= ff.object.score %>
+    <%= @review.star_width(num: ff.object.score) %>
+    <div class="outer-stars">
+      <div class='inner-stars' id="inner-stars-<%= ff.object.style %>" style="width: <%= @review.star_width(num: ff.object.score) %>%">
+        <%= @review.stars(style: ff.object.style, num: 5) %>
+      </div>
+      <div class='inner-starso'>
+        <%= @review.starso(style: ff.object.style) %>
+      </div>
+    </div>
+    <br/>
+  <% end %>
+
+  <%= f.label :message %>
+  <%= f.text_area :message, required: true %>
+
+  <div>
+    <%= f.submit('Submit For Approval') %>
+  </div>
+<% end %>
+
+<div># TODO ADD RESPONSE NOTE</div>
+
+<%= javascript_tag do %>
+<% end %>
+<script>
+  let stars = document.getElementsByClassName('fa-star');
+  for (const val of stars) {
+    val.onmouseover = function(e) {
+      starHover(this)
+    };
+    val.onmouseout = function(e) {
+      starClear(this)
+    };
+    val.onclick = function(e) {
+      starClick(this)
+    }
+  }
+  function starClick(that) {
+    let values = getStarVariables(that);
+    setStarElementWidth(values['type'], values['value']);
+    setStarElementValue(values['element'], values['value']);
+  }
+
+  function starHover(that) {
+    let values = getStarVariables(that);
+    setStarElementWidth(values['type'], values['value']);
+  }
+
+  function starClear(that) {
+    let values = getStarVariables(that);
+    setStarElementWidth(values['type'], values['originalValue']);
+  }
+
+  function getStarVariables(that) {
+    let type = that.dataset.type;
+    let element = document.getElementById(type);
+    return {
+      value: that.dataset.value,
+      type: type,
+      element: element,
+      originalValue: element.value
+    }
+  }
+
+  function setStarElementValue(element, value) {
+    element.setAttribute('value', value);
+  }
+
+  function setStarElementWidth(type, value) {
+    let starElement = document.getElementById('inner-stars-' + type);
+    starElement.style.width = 20 * value + '%';
+  }
+
+</script>

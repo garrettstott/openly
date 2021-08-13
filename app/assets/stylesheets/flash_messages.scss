@@ -1,0 +1,29 @@
+#flash-messages {
+  .alert.alert {
+    background: lightgoldenrodyellow;
+  }
+  .alert.error {
+    background: lightpink;
+  }
+  .alert.success {
+    background: lightgreen;
+  }
+  .alert-notice {
+    background: lightblue;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 8px;
+      color: $Black;
+    }
+  }
+  a {
+    float: right;
+    margin: 8px 8px 0 0;
+    text-decoration: none;
+    color: $Black;
+  }
+}

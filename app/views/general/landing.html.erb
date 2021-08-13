@@ -1,0 +1,59 @@
+<div id='landing'>
+  <div class='hero flex section'>
+    <div class='hero-section'>
+      <h1>Say what you want to say</h1>
+      <form id='company-search'>
+        <input type="search" placeholder="Search" data-behavior="autocomplete"/>
+      </form>
+      <%= link_to('Browse Companies', companies_path) %>
+    </div>
+  </div>
+  <div class='section info-section'>
+    <div>
+      <h1>Why Openly is different</h1>
+    </div>
+    <div class='flex sb about'>
+      <div>
+        <i class="fas fa-door-open"></i>
+        <h3>We have an open door policy</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ullamcorper ipsum. Quisque eros velit, dictum dapibus mattis vel, elementum molestie sapien.
+        </p>
+      </div>
+      <div>
+        <i class="fas fa-hand-holding-heart"></i>
+        <h3>Building a safer workplace</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ullamcorper ipsum. Quisque eros velit, dictum dapibus mattis vel, elementum molestie sapien.
+        </p>
+      </div>
+      <div>
+        <i class="fas fa-bullhorn"></i>
+        <h3>We welcome whistleblowers</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ullamcorper ipsum. Quisque eros velit, dictum dapibus mattis vel, elementum molestie sapien.
+        </p>
+      </div>
+    </div>
+    <div class='learn-more text-center'>
+      <button>Learn More</button>
+    </div>
+  </div>
+  <div class='flex section start-section'>
+    <div class='hero-section'>
+      <h1>Start reviewing your company</h1>
+      <% if user_signed_in? %>
+        <% if current_user.companies.any? %>
+          <%= link_to(company_path(current_user.current_company), class: 'btn btn-white') do %>
+            Review <%= current_user.current_company.name %>
+          <% end %>
+        <% else %>
+          <button class='btn-white'>Add Employment History</button>
+        <% end %>
+      <% else %>
+        <%= link_to('Login', new_user_session_path, class: 'btn btn-highlight') %>
+        <%= link_to('Sign Up', new_user_registration_path, class: 'btn btn-white') %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<h3>Review Queues (<%= @total %>)</h3>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+<div class='flex flex-column'>
+  <% @items.each do |review| %>
+    <div class='card mb-8 width-50'>
+      <div class='flex sb mb-8'>
+        <span>
+          <%= review.company.name %>
+        </span>
+        <span>
+          <%= review.user.username %>
+        </span>
+      </div>
+      <div class='flex sb'>
+        <span>
+          <%= review.short_message %>
+        </span>
+        <span>
+          <%= link_to('Review', review_path(review), class: 'btn') %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>

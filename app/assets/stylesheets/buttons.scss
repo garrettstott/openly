@@ -1,0 +1,52 @@
+button, .btn, input[type='submit'], a.btn {
+  border: 2px solid $Secondary;
+  padding: 12px 16px;
+  background: none;
+  color: $Secondary;
+  cursor: pointer;
+  border-radius: 4px;
+  min-width: 140px;
+  display: inline-block;
+  text-align: center;
+}
+
+button:hover, .btn:hover, input[type='submit']:hover, a.btn:hover {
+  border: 2px solid lighten($Secondary, 10%);
+  color: lighten($Secondary, 10%);
+}
+
+.btn-danger, input[type='submit'].btn-danger, a.btn-danger {
+  border: 2px solid deeppink;
+  color: deeppink;
+}
+
+.btn-danger:hover, input[type='submit'].btn-danger:hover, a.btn-danger:hover {
+  border: 2px solid deeppink;
+  background: deeppink;
+  color: $White;
+}
+
+.btn-highlight, input[type='submit'].btn-highlight, a.btn-highlight {
+  border: 2px solid $Highlight;
+  background: $Highlight;
+  color: $White;
+}
+
+.btn-highlight:hover, input[type='submit'].btn-highlight:hover, a.btn-highlight:hover {
+  border: 2px solid darken($Highlight, 10%);
+  background: darken($Highlight, 10%);
+  // #DF490B
+  color: $White;
+}
+
+.btn-white, input[type='submit'].btn-white, a.btn-white {
+  border: 2px solid $White;
+  background: none;
+  color: $White;
+}
+
+.btn-white:hover, input[type='submit'].btn-white:hover, a.btn-white:hover {
+  border: 2px solid $White;
+  background-color: rgba(255,255,255,0.3);
+  color: $White;
+}

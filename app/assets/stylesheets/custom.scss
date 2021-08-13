@@ -1,0 +1,49 @@
+html, body {
+  color: $Black;
+  background: $White;
+  font-size: 1.1em;
+}
+
+.section {
+  margin-bottom: 16px;
+}
+
+.wrapper {
+  // 100% - navbar-height - not-sure - footer-height - footer-padding - footer-margin
+  min-height: calc(100vh - 67px - 19px - 45px - 32px - 64px);
+  margin-top: 84px;
+  padding: 2px 16px 0 16px;
+}
+
+.highlight {
+  color: deeppink !important;
+}
+
+.card {
+  border: 1px solid deeppink;
+  padding: 8px;
+  margin-bottom: 4px;
+}
+
+::selection {
+  background: deepskyblue; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: deepskyblue; /* Gecko Browsers */
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.bold {
+  font-weight: bold;
+}

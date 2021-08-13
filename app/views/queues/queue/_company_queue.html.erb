@@ -1,0 +1,17 @@
+<h3>Company Queue (<%= @total %>)</h3>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+<div class='flex flex-column'>
+  <% @items.each do |company| %>
+    <div class='card width-50 mb-8'>
+      <div class='flex sb'>
+        <div>
+          <%= company.name %>
+        </div>
+        <div>
+          <%= link_to('Review', company_path(company), class: 'btn') %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>

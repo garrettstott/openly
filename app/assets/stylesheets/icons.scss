@@ -1,0 +1,45 @@
+.fa-times {
+  color: deeppink;
+}
+
+.fa-check {
+  color: deepskyblue;
+}
+
+.fa-star {
+  z-index: 5;
+}
+
+.fa-star-o {
+  z-index: 1;
+}
+
+
+.outer-stars {
+  // TODO if any sizing changes, this will need to change
+  // this is the width of inner-starso div
+  // TODO js this shit
+  width: 141.583px;
+  white-space: nowrap;
+  position: relative;
+  display: inline-block;
+  color: deepskyblue;
+  font-size: 1.3em;
+  margin-top: 8px;
+}
+
+.outer-stars.denied {
+  color: deeppink;
+}
+
+.inner-stars {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.inner-starso {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

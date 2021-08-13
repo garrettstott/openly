@@ -1,0 +1,37 @@
+<h1>Review</h1>
+<p>
+  Created: <%= @review.nice_date_full(@review.created_at) %>
+  <% if @review.edited? %>
+    Edited: <%= @review.nice_date_full(@review.updated_at) %>
+  <% end %>
+</p>
+<p>
+  Company: <%= link_to(@review.company.name, company_path(@review.company)) %>
+  Approved: <%= @review.approved_icon %>
+  Denied: <%= @review.denied_icon %>
+</p>
+<h3>Message</h3>
+<p><%= @review.message %></p>
+
+<%= link_to('Approve', review_approve_path(@review), method: 'put', class: 'btn', data: {confirm: 'Are you sure you want to approve this review?'}) %>
+
+<% if !@review.denied %>
+  <div class='flex'>
+    <div class='flex flex-1'>
+      <%= form_for(@review, method: 'put', url: review_deny_path(@review)) do |f| %>
+        <%= f.fields_for :note do |ff| %>
+          <%= ff.hidden_field :style, value: Note.styles.keys.first %>
+          <div class=''>
+            <%= ff.text_area :message, required: true %>
+            <%= ff.label :message_for_denial %>
+          </div>
+        <% end %>
+        <%= f.submit 'Deny', class: 'btn-danger', data: {confirm: 'Are you sure you want to deny this review?'} %>
+      <% end %>
+    </div>
+
+<% end %>
+  <div class='flex flex-column flex-1'>
+    <%= render('notes/notes', record: @review) %>
+  </div>
+</div>

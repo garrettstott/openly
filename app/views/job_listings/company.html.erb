@@ -1,0 +1,32 @@
+<div>
+  <div>
+    <h1><%= @company.name %></h1>
+  </div>
+
+  <div>
+    <h3>Job Listings</h3>
+    <% @jobs.each do |job| %>
+      <div>
+        <div>
+          Job Title <%= job.job_title %>
+        </div>
+        <div>
+          Location <%= job.location %>
+        </div>
+        <div>
+          Job Type <%= job.job_type_nice %>
+        </div>
+        <div>
+          Salary <%= job.salary %>
+        </div>
+        <div>
+          <button class='btn'>Apply</button>
+        </div>
+        <div>
+          Description
+          <p><%= job.description %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

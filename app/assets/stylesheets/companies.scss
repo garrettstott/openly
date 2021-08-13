@@ -1,0 +1,23 @@
+// Place all the styles related to the companies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#company-index {
+  h1 {
+    margin-bottom: 0;
+  }
+  .section {
+    margin-bottom: 32px;
+  }
+  h3 {
+    margin: 0;
+    text-align: center;
+  }
+  .card {
+    min-width: 400px;
+    margin: 2px;
+    .card-section {
+      color: $Black;
+    }
+  }
+}

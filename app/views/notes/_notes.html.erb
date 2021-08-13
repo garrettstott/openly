@@ -1,0 +1,22 @@
+<h3 class='mt-0'>
+  <% if record.notes.any? %>
+   <%= record.notes.count %>
+  <% else %>
+   No
+  <% end %>
+  Notes
+</h3>
+<% record.notes.order(:created_at, :desc).each do |note| %>
+  <div class='card'>
+    <div class='flex sb'>
+      <span><%= note.nice_date_full(note.created_at) %> : <%= note.created_by_user %></span>
+      <span><%= note.style.titleize %></span>
+    </div>
+    <div>
+      <p><%= note.message %></p>
+    </div>
+    <% if uber_signed_in? %>
+      <%= link_to('Delete Note', destroy_note_path(note), method: :delete) %>
+    <% end %>
+  </div>
+<% end %>

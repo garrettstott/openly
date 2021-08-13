@@ -1,0 +1,24 @@
+<div id="flash-messages">
+  <% if flash.any? %>
+    <a href="" class="close" data-dismiss="alert">Close &#215;</a>
+  <% end %>
+  <div class="">
+    <% flash.each do |type, msg| %>
+      <div class='alert <%= type %>'>
+        <ul>
+          <% if msg.is_a?(Array) %>
+            <% msg.each do |m| %>
+              <li>
+                <%= m %>
+              </li>
+            <% end %>
+          <% else %>
+            <li>
+              <%= msg %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

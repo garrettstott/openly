@@ -1,0 +1,29 @@
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  .logo {
+    svg {
+      margin: auto 0;
+      height: 34px;
+      width: auto;
+    }
+  }
+  .navbar-interior {
+    padding: 8px 16px;
+    background-clip: padding-box;
+    background: $White;
+    border-bottom: 1px solid $Grey;
+  }
+  .nav-left, .nav-right, .nav-middle {
+    margin: auto 0;
+  }
+  .nav-left {
+
+  }
+  .nav-right {
+    text-align: right;
+  }
+}

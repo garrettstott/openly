@@ -1,0 +1,10 @@
+<%= form_for(@chief) do |f| %>
+  <%= f.hidden_field :company_id, value: @chief.company_id %>
+  <%= f.hidden_field :created_by, value: current_user.id %>
+  <%= f.select :title, options_for_select(Chief.titles_for_forms) %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, required: true %>
+  <%= f.submit 'Submit Leadership For Approval' %>
+<% end %>

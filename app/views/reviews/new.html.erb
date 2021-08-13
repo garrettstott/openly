@@ -1,0 +1,7 @@
+<h1>Add A Review</h1>
+<% if @review.chief_id.present? %>
+  <%= @review.chief.full_name %> @
+<% end %>
+<%= @review.company.name %>
+
+<%= render('form') %>

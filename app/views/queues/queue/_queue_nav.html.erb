@@ -1,0 +1,17 @@
+<div class='mt-8'>
+  <%= link_to moderator_path, class: 'btn' do %>
+    <i class='fa fa-arrow-left'></i> Back
+  <% end %>
+</div>
+<h1>Review Queues</h1>
+<div class='flex'>
+  <% @review_types.each do |review_type| %>
+    <div class='mr-16'>
+      <% if review_type == @selected_queue %>
+        <%= link_to(review_type, queue_items_path(review_type.parameterize.underscore), class: 'highlight') %>
+      <% else %>
+        <%= link_to(review_type, queue_items_path(review_type.parameterize.underscore)) %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
