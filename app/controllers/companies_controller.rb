@@ -1,8 +1,10 @@
 class CompaniesController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_company, only: [:show, :edit, :update, :deny, :approve]
   before_action :authenticate_super!, only: [:edit, :update]
   before_action :authenticate_mod!, only: [:approve, :deny]
+  before_action :authenticate_uber!, only: [:destroy]
 
   def index
     @pagy, @companies = pagy(Company.where(approved: true), items: 6)
@@ -15,6 +17,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
+    binding.pry
     if @company.update(company_params)
       set_flash_message(:success, 'Updated Company')
       redirect_to edit_company_path(@company)
@@ -29,7 +32,14 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    # TODO
+    @company = Company.new(company_params)
+    if @company.save
+      set_flash_message(:success, 'Created Company')
+      redirect_to company_path(@company)
+    else
+      set_flash_message(:error, @company.errors.full_messages)
+      render :new
+    end
   end
 
   def approve
@@ -49,6 +59,12 @@ class CompaniesController < ApplicationController
   def company_params
     params.require(:company).permit(
       :name,
+      :about,
+      :employee_count,
+      :founded,
+      :industry,
+      :website,
+      :created_by
     )
   end
   def set_company

@@ -4,7 +4,7 @@ class CreateCompanies < ActiveRecord::Migration[6.1]
       t.string :name, null: false
       t.integer :founded
       t.string :website
-      t.string :employee_count
+      t.integer :employee_count
       t.string :industry
       t.text :about
       t.integer :created_by, null: false, index: true

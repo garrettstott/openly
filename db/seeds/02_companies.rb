@@ -9,7 +9,7 @@ names = %w(Verisys Adobe)
     about: Faker::Lorem.paragraph(sentence_count: Faker::Number.between(from: 10, to: 20)),
     founded: Faker::Number.between(from: 1820, to: 2021),
     website: "https://www.#{name.downcase.parameterize}.com",
-    employee_count: Faker::Number.between(from: 1, to: 50000),
+    employee_count: Company.employee_counts_for_forms.first.first,
   )
   if c.save
     User.first.add_employment(
@@ -32,7 +32,7 @@ names.each do |name|
     about: Faker::Lorem.paragraph(sentence_count: Faker::Number.between(from: 10, to: 20)),
     founded: Faker::Number.between(from: 1820, to: 2021),
     website: "https://www.#{name.downcase}.com",
-    employee_count: Faker::Number.between(from: 1, to: 50000),
+    employee_count: Company.employee_counts_for_forms.first.first,
   )
   if c.save
     User.first.add_employment(

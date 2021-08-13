@@ -7,7 +7,7 @@
 #  approved       :boolean          default(FALSE), not null
 #  created_by     :integer          not null
 #  denied         :boolean          default(FALSE), not null
-#  employee_count :string
+#  employee_count :integer
 #  founded        :integer
 #  industry       :string
 #  name           :string           not null
@@ -37,6 +37,8 @@ class Company < ApplicationRecord
   has_many :employment_companies
   has_many :users, through: :employment_companies
 
+  enum employee_count: {"0-10": 0, "10-50": 1, "50-100": 2, "100-500": 3, "500-1000": 4, "1000-5000": 5, "5000+": 6}
+
   def ratings
     Rating.joins(:review).where(review: {approved: true, company_id: self.id, chief_id: nil})
   end
@@ -50,7 +52,15 @@ class Company < ApplicationRecord
   end
 
   def location
-    self.addresses.first.short_address
+    if self.addresses.any?
+      self.addresses.first.short_address
+    else
+      ''
+    end
+  end
+
+  def self.employee_counts_for_forms
+    self.employee_counts.keys.map { |t| [t, t] }
   end
 
 end

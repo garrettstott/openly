@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.string "name", null: false
     t.integer "founded"
     t.string "website"
-    t.string "employee_count"
+    t.integer "employee_count"
     t.string "industry"
     t.text "about"
     t.integer "created_by", null: false

@@ -23,6 +23,12 @@ class ChiefsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def approve
     @chief.update(approved: true, denied: false)
     set_flash_message(:success, 'Chief Approved')

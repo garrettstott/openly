@@ -26,10 +26,10 @@ html, body {
 }
 
 ::selection {
-  background: deepskyblue; /* WebKit/Blink Browsers */
+  background: rgba(254, 83, 12, 0.5); /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-  background: deepskyblue; /* Gecko Browsers */
+  background: rgba(254, 83, 12, 0.5); /* Gecko Browsers */
 }
 
 .text-right {

@@ -1,7 +1,41 @@
 <%= form_for(@company) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <h1># TODO add the rest of the fields</h1>
+
+  <%= f.hidden_field :created_by, value: current_user.id %>
+
+  <div class='form-field'>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Openly', autofocus: true %>
+  </div>
+
+    <% if mod_signed_in? %>
+      <div class='flex'>
+
+        <div class='form-field'>
+          <%= f.label :founded %>
+          <%= f.number_field :founded, min: 1600, max: DateTime.now.year, placeholder: '1998' %>
+        </div>
+
+        <div class='form-field'>
+          <%= f.label :industry %>
+          <%= f.text_field :industry, placeholder: 'Technology' %>
+        </div>
+
+        <div class='form-field'>
+          <%= f.label :website %>
+          <%= f.text_field :website, placeholder: 'https://www.openly.com' %>
+        </div>
+
+        <div class='form-field'>
+          <%= f.label :employee_count %>
+          <%= f.select :employee_count, options_for_select(Company.employee_counts_for_forms, selected: f.object.employee_count), include_blank: 'Select One' %>
+        </div>
+      </div>
+        <div class='form-field'>
+          <%= f.label :about %>
+          <%= f.text_area :about %>
+        </div>
+    <% end %>
+
   <div>
     <%= f.submit %>
   </div>
