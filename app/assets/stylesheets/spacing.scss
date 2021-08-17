@@ -3,7 +3,17 @@
 ************************************************/
 
 .margin-auto {
-  margin: auto 0;
+  margin: auto;
+}
+
+.margin-auto-v {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.margin-auto-h {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mb-0 {
@@ -16,6 +26,10 @@
 
 .mb-16 {
   margin-bottom: 16px;
+}
+
+.mb-32 {
+  margin-bottom: 32px;
 }
 
 .mt-0 {

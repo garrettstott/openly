@@ -1,0 +1,16 @@
+<h1>System Dashboard</h1>
+<div>
+  <h1>User Info</h1>
+  <h3>Gender</h3>
+  <%= render('bar_chart', data: @data[:gender]) %>
+  <%#= line_chart @data["gender"], id: 'gender-chart' %>
+  <h3>Orientation</h3>
+  <%= render('bar_chart', data: @data[:orientation]) %>
+  <%#= column_chart @data["orientation"] %>
+  <h3>Race</h3>
+  <%= render('bar_chart', data: @data[:race]) %>
+  <%#= bar_chart @data["race"] %>
+  <h3>Person of color</h3>
+  <%= render('bar_chart', data: @data[:poc]) %>
+  <%#= pie_chart @data["poc"] %>
+</div>

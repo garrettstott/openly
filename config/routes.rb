@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   get '/system/reviews', to: 'system#reviews', as: 'system_reviews'
   get '/system/reviews/:status', to: 'system#reviews'
   get '/system/admin/new', to: 'system#new_admin', as: 'new_admin'
+  get '/system/dashboard', to: 'system#dashboard', as: 'system_dashboard'
 
   get '/moderator', to: 'moderator#index', as: 'moderator'
   put 'moderator/users/:id/deny', to: 'moderator#user_deny', as: 'user_deny'

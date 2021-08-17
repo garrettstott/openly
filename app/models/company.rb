@@ -21,6 +21,7 @@
 #
 class Company < ApplicationRecord
 
+  include Darwinable
   include Rateable
   include Iconable
   include Noteable

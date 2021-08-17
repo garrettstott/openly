@@ -1,0 +1,23 @@
+<% data_count = data.keys.length %>
+<div class='flex bar-chart'>
+  <% data.each_with_index do |(k,v), i| %>
+    <div
+      class="bar bar-header"
+      style="flex: <%= v[:percentage] / 100 %>;"
+    >
+      <%= k.capitalize %> <%= v[:count] %>
+    </div>
+  <% end %>
+</div>
+<div class='flex bar-chart'>
+  <% data.each_with_index do |(k,v), i| %>
+    <% opacity =  (((data_count.to_f / (i+=1).to_f) / data_count).round(2)) + 0.3 %>
+    <% opacity = 1.0 if opacity > 1.0 %>
+    <div
+      class="bar bar-background flex"
+      style="background-color: rgb(254, 83, 12, <%= opacity %>); flex: <%= v[:percentage] / 100 %>;"
+    >
+      <span class='percentage'><%= v[:percentage].ceil %>%</span>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+.bar-chart {
+  .bar {
+    display: inline-block;
+    margin-right: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .bar:last-child {
+    margin-right: 0;
+  }
+  .bar-header {
+  }
+  .bar-background {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

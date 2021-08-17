@@ -5,10 +5,10 @@ roles.each do |role|
   u = User.new(
     first_name: role,
     last_name: 'admin',
-    gender: 'unknown',
+    gender: Faker::Demographic.sex,
     person_of_color: [true, false].sample,
-    race: 'unknown',
-    orientation: 'unknown',
+    race: Faker::Demographic.race,
+    orientation: Faker::Gender.type,
     email: "#{role}@test.com",
     password: 'Testtest123!',
     admin: true,

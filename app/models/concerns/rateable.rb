@@ -1,5 +1,4 @@
-module
-Rateable
+module Rateable
   extend ActiveSupport::Concern
 
   def calculate_rating

@@ -11,13 +11,13 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    @data = @company.user_graph_data
   end
 
   def edit
   end
 
   def update
-    binding.pry
     if @company.update(company_params)
       set_flash_message(:success, 'Updated Company')
       redirect_to edit_company_path(@company)

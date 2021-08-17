@@ -2,10 +2,10 @@ class SystemController < ApplicationController
 
   before_action :authenticate_uber!
 
-  before_action :set_class_records, except: [:index]
-  before_action :set_statuses, except: [:index]
-  before_action :set_status, except: [:index]
-  before_action :set_records, except: [:index]
+  before_action :set_class_records, except: [:index, :dashboard]
+  before_action :set_statuses, except: [:index, :dashboard]
+  before_action :set_status, except: [:index, :dashboard]
+  before_action :set_records, except: [:index, :dashboard]
 
   def index
     records = User.where(admin: true)
@@ -24,6 +24,10 @@ class SystemController < ApplicationController
   end
 
   def users
+  end
+
+  def dashboard
+    @data = Company.system_user_graph_data
   end
 
   private
