@@ -5,7 +5,7 @@
       class="bar bar-header"
       style="flex: <%= v[:percentage] / 100 %>;"
     >
-      <%= k.capitalize %> <%= v[:count] %>
+      <%= k.capitalize %> <%= v[:percentage].ceil %>%
     </div>
   <% end %>
 </div>
@@ -17,7 +17,7 @@
       class="bar bar-background flex"
       style="background-color: rgb(254, 83, 12, <%= opacity %>); flex: <%= v[:percentage] / 100 %>;"
     >
-      <span class='percentage'><%= v[:percentage].ceil %>%</span>
+      <span class='percentage'></span>
     </div>
   <% end %>
 </div>

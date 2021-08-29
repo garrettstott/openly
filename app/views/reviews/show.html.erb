@@ -18,7 +18,7 @@
 <% if !@review.denied %>
   <div class='flex'>
     <div class='flex flex-1'>
-      <%= form_for(@review, method: 'put', url: review_deny_path(@review)) do |f| %>
+      <%= form_for(@review, method: 'put', url: review_deny_path(@review), format: :html) do |f| %>
         <%= f.fields_for :note do |ff| %>
           <%= ff.hidden_field :style, value: Note.styles.keys.first %>
           <div class=''>

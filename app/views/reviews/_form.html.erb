@@ -1,40 +1,33 @@
-<%= form_with model: @review do |f| %>
-  <%= f.hidden_field :company_id, value: @review.company_id %>
-  <%= f.hidden_field :user_id, value: @review.user_id %>
-  <%= f.hidden_field :chief_id, value: @review.chief_id %>
+<div data-turbo='false'>
+  <%= form_for(@review) do |f| %>
+    <%= f.hidden_field :company_id, value: @review.company_id %>
+    <%= f.hidden_field :user_id, value: @review.user_id %>
+    <%= f.hidden_field :chief_id, value: @review.chief_id %>
 
-  <%= f.fields_for :ratings do |ff| %>
-    <%= ff.hidden_field :style, value: ff.object.style %>
-    <%= ff.label ff.object.style %>
-    <%= ff.number_field :score, id: ff.object.style, class: 'hidden' %>
-    <%= ff.object.score %>
-    <%= @review.star_width(num: ff.object.score) %>
-    <div class="outer-stars">
-      <div class='inner-stars' id="inner-stars-<%= ff.object.style %>" style="width: <%= @review.star_width(num: ff.object.score) %>%">
-        <%= @review.stars(style: ff.object.style, num: 5) %>
+    <%= f.fields_for :ratings do |ff| %>
+      <%= ff.hidden_field :style, value: ff.object.style %>
+      <%= ff.label ff.object.style, class: 'inline' %>
+      <%= ff.number_field :score, id: ff.object.style, class: 'hidden' %>
+      <div class="outer-stars">
+        <div class='inner-stars' id="inner-stars-<%= ff.object.style %>" style="width: <%= @review.star_width(num: ff.object.score) %>%">
+          <%= @review.stars(style: ff.object.style, num: 5) %>
+        </div>
+        <div class='inner-starso'>
+          <%= @review.starso(style: ff.object.style) %>
+        </div>
       </div>
-      <div class='inner-starso'>
-        <%= @review.starso(style: ff.object.style) %>
-      </div>
-    </div>
-    <br/>
-  <% end %>
+    <% end %>
 
-  <%= f.label :message %>
-  <%= f.text_area :message, required: true %>
-
-  <div>
+    <%= f.label :message %>
+    <%= f.text_area :message, required: true %>
     <%= f.submit('Submit For Approval') %>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <div># TODO ADD RESPONSE NOTE</div>
 
-<%= javascript_tag do %>
-<% end %>
 <script>
-  let stars = document.getElementsByClassName('fa-star');
-  for (const val of stars) {
+  for (const val of document.getElementsByClassName('fa-star')) {
     val.onmouseover = function(e) {
       starHover(this)
     };

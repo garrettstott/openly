@@ -14,8 +14,9 @@
     text-align: center;
   }
   .card {
-    min-width: 400px;
-    margin: 2px;
+    flex-basis: 31.6%;
+    max-width: 31.6%;
+    margin: 2px 3.3px;
     .card-section {
       color: $Black;
     }

@@ -37,6 +37,6 @@
   </div>
   <%= link_to('Add A Review', new_chief_review_path(@chief.company, @chief), class: 'btn') %>
   <div>
-    <%= render "reviews/reviews", reviews: @chief.approved_reviews, account: false %>
+    <%= render "reviews/reviews", account: false %>
   </div>
 </div>

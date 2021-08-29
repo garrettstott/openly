@@ -1,5 +1,24 @@
 <div id='company-show'>
-  <div class='flex hero'>
+  <div class='hero'>
+    <div class='flex sb'>
+      <div></div>
+      <!--      TODO add note      -->
+      <% if admin_signed_in? %>
+        <div class='flex'>
+          <% if @company.approved %>
+            <%= @company.approved_icon %> Approved
+            <%= link_to('Deny', company_deny_path(@company), method: :put, class: 'btn btn-danger') %>
+          <% elsif @company.denied %>
+            <%= @company.approved_icon %> Denied
+            <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
+          <% else %>
+            Awaiting
+            <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
+          <% end %>
+          <%= link_to('EDIT', edit_company_path(@company), class: 'btn') %>
+        </div>
+      <% end %>
+    </div>
     <div class='flex hero-section'>
       <div class='flex flex-column flex-05'>
         <h1><%= @company.name %></h1>
@@ -37,58 +56,6 @@
     </div>
   </div>
 
-<!--  <div>-->
-    <%# @data.each do |k,v| %>
-<!--      <div class='mt-16'>-->
-<!--        <h3><%#= k.to_s.titleize %></h3>-->
-        <%# v.each do |kk, vv| %>
-<!--          <div><%#= kk %>: <%#= vv %></div>-->
-        <%# end %>
-<!--      </div>-->
-    <%# end %>
-<!--  </div>-->
-
-  <div>
-    <h3>Gender</h3>
-    <%= render('bar_chart', data: @data[:gender]) %>
-    <%#= line_chart @data["gender"], id: 'gender-chart' %>
-    <h3>Orientation</h3>
-    <%= render('bar_chart', data: @data[:orientation]) %>
-    <%#= column_chart @data["orientation"] %>
-    <h3>Race</h3>
-    <%= render('bar_chart', data: @data[:race]) %>
-    <%#= bar_chart @data["race"] %>
-    <h3>Person of color</h3>
-    <%= render('bar_chart', data: @data[:poc]) %>
-    <%#= pie_chart @data["poc"] %>
-  </div>
-
-  <div class='flex sb'>
-    <%= link_to("All Companies", companies_path, class: 'btn') %>
-    <!--      TODO add note      -->
-    <% if admin_signed_in? %>
-      <div class='flex'>
-        <% if @company.approved %>
-          <%= @company.approved_icon %> Approved
-          <%= link_to('Deny', company_deny_path(@company), method: :put, class: 'btn btn-danger') %>
-        <% elsif @company.denied %>
-          <%= @company.approved_icon %> Denied
-          <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
-        <% else %>
-          Awaiting
-          <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
-        <% end %>
-        <%= link_to('EDIT', edit_company_path(@company), class: 'btn') %>
-      </div>
-    <% end %>
-  </div>
-
-
-  <div class='flex flex-column'>
-    <h3>Jobs</h3>
-    <div><%= link_to("View #{@company.job_listings.count} Job Listings", company_job_listings_path(@company.name), class: 'btn') %></div>
-  </div>
-
   <div class='flex'>
     <div class='flex flex-column width-50'>
       <%= render "ratings/stars", record: @company %>
@@ -103,35 +70,65 @@
 
   <%= link_to("Review #{@company.name}", new_review_path(@company), class: 'btn') %>
 
-  <h3>Leadership</h3>
-  <div class='flex flex-row'>
-    <% @company.approved_current_chiefs.each do |chief| %>
-      <div class='section mr-16'>
-        <h4>
-          <%= link_to(chief.full_name, chief_path(chief)) %>
-        </h4>
-        <h5><%= chief.title_nice %></h5>
-        <div class='flex flex-column'>
-          <%= render "ratings/stars", record: chief %>
-          (<%= chief.review_count %> Reviews) <%= link_to("Review #{chief.title_small}", new_chief_review_path(@company, chief)) %>
+  <div class='leadership'>
+    <h3>Leadership</h3>
+    <div class='flex flex-row'>
+      <% @company.approved_current_chiefs.each do |chief| %>
+        <div class='section mr-16'>
+          <h4>
+            <%= link_to(chief.full_name, chief_path(chief)) %>
+          </h4>
+          <h5><%= chief.title_nice %></h5>
+          <div class='flex flex-column'>
+            <%= render "ratings/stars", record: chief %>
+            (<%= chief.review_count %> Reviews) <%= link_to("Review #{chief.title_small}", new_chief_review_path(@company, chief)) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to('Add Leadership', new_chief_path(@company)) %>
+  </div>
+
+  <div class='flex flex-column jobs'>
+    <h3>Jobs</h3>
+    <div><%= link_to("View #{@company.job_listings.count} Job Listings", company_job_listings_path(@company.name), class: 'btn') %></div>
+  </div>
+
+  <div class='data-charts'>
+    <h3>Gender</h3>
+    <%= render('bar_chart', data: @data[:gender]) %>
+    <%#= line_chart @data["gender"], id: 'gender-chart' %>
+    <h3>Orientation</h3>
+    <%= render('bar_chart', data: @data[:orientation]) %>
+    <%#= column_chart @data["orientation"] %>
+    <h3>Race</h3>
+    <%= render('bar_chart', data: @data[:race]) %>
+    <%#= bar_chart @data["race"] %>
+    <h3>Person of color</h3>
+    <%= render('bar_chart', data: @data[:poc]) %>
+    <%#= pie_chart @data["poc"] %>
+  </div>
+
+  <div class='flex flex-column width-50' id='scroll'>
+    <h3>Reviews</h3>
+    <div data-controller="sort">
+      <div id='reviews'>
+        <div class='flex sb'>
+          <% ['new_to_old', 'old_to_new', 'highest_rated', 'most_helpful'].each do |sort| %>
+            <div
+              data-action='click->sort#sortData'
+              class="turbo-link <%= sort == @sort ? 'highlight' : ''%>"
+              data="/companies/<%= @company.id %>?sort=<%= sort %>"
+            >
+              <%= sort.titleize %>
+            </div>
+          <% end %>
+        </div>
+        <%= render partial: 'reviews/reviews', formats: [:html], locals: {account: false} %>
+        <div>
+          <%== pagy_nav(@pagy) %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
-  <%= link_to('Add Leadership', new_chief_path(@company)) %>
-
-  <h3>Reviews</h3>
-  <div class='flex flex-column width-50'>
-    <%= render('reviews/reviews', reviews: @company.approved_reviews, account: false) %>
-  </div>
-
 </div>
-
-<!--<script>-->
-<!--  Chartkick.options = {-->
-<!--    // TODO-->
-<!--    height: "400px",-->
-<!--    colors: ["#b00", "#666"],-->
-<!--  }-->
-<!--</script>-->
-

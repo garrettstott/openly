@@ -5,7 +5,7 @@
       <input type="search" placeholder="Search" data-behavior="autocomplete"/>
     </form>
   </div>
-  <div class='flex flex-wrap'>
+  <div class='flex flex-flow-wrap'>
     <% @companies.each do |company| %>
       <%= link_to(company_path(company), class: 'flex-1 card') do %>
         <h3><%= company.name %></h3>

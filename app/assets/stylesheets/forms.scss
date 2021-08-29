@@ -28,6 +28,9 @@ form {
     label {
       display: block;
     }
+    label.inline {
+      display: inline-block;
+    }
   }
 }
 

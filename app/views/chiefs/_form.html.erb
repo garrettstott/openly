@@ -1,4 +1,4 @@
-<%= form_for(@chief) do |f| %>
+<%= form_for(@chief, format: :html) do |f| %>
   <%= f.hidden_field :company_id, value: @chief.company_id %>
   <%= f.hidden_field :created_by, value: current_user.id %>
   <%= f.select :title, options_for_select(Chief.titles_for_forms, selected: f.object.title) %>

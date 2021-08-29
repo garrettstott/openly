@@ -1,9 +1,9 @@
 .fa-times {
-  color: deeppink;
+  color: $Highlight;
 }
 
 .fa-check {
-  color: deepskyblue;
+  color: $Secondary;
 }
 
 .fa-star {
@@ -23,13 +23,13 @@
   white-space: nowrap;
   position: relative;
   display: inline-block;
-  color: deepskyblue;
+  color: $Gold;
   font-size: 1.3em;
   margin-top: 8px;
 }
 
 .outer-stars.denied {
-  color: deeppink;
+  color: $Highlight;
 }
 
 .inner-stars {

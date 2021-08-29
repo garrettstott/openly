@@ -1,7 +1,7 @@
 <% if record.respond_to?(:overall_rating) %>
   <div class='flex'>
-    <span class='margin-auto-v'>Overall</span>
-    <div class="outer-stars <%= record.denied ? 'denied' : '' %>">
+    <span class='margin-auto-v'style='flex: 0.35'>Overall</span>
+    <div class="outer-stars flex-3 <%= record.denied ? 'denied' : '' %>">
       <div class='inner-stars' style="width: <%= record.star_width(num: record.overall_rating) %>%">
         <%= record.stars(num: record.overall_rating) %>
       </div>
@@ -14,8 +14,8 @@
 <% end %>
 <% Rating.styles.keys.each do |style| %>
   <div class='flex'>
-    <span class='margin-auto-v'><%= style.capitalize %></span>
-    <div class="outer-stars <%= record.denied ? 'denied' : '' %>">
+    <span class='margin-auto-v' style='flex: 0.35'><%= style.capitalize %></span>
+    <div class="outer-stars flex-3 <%= record.denied ? 'denied' : '' %>">
       <div class='inner-stars' style="width: <%= record.star_width(style: style) %>%">
         <%= record.stars(style: style) %>
       </div>

@@ -6,6 +6,7 @@ class ChiefsController < ApplicationController
   before_action :set_company, only: [:new]
   
   def show
+    @reviews = @chief.approved_reviews
   end
 
   def new
@@ -27,6 +28,13 @@ class ChiefsController < ApplicationController
   end
 
   def update
+    if @chief.update(chief_params)
+      set_flash_message(:success, 'Leadership updated')
+      redirect_to chief_path(@chief)
+    else
+      set_flash_message(:error, @chief.errors.full_messages)
+      redirect_back fallback_location: root_path
+    end
   end
 
   def approve

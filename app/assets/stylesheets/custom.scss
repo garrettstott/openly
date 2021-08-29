@@ -16,13 +16,14 @@ html, body {
 }
 
 .highlight {
-  color: deeppink !important;
+  color: $Highlight !important;
 }
 
 .card {
-  border: 1px solid deeppink;
+  border: 1px solid $Secondary;
   padding: 8px;
   margin-bottom: 4px;
+  border-radius: 4px;
 }
 
 ::selection {

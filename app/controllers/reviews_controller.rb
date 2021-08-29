@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :authenticate_mod!, only: [:show, :approve, :deny]
-  before_action :set_company, only: [:new]
+  before_action :set_company, only: [:new, :create]
   before_action :set_review, except: [:new, :create]
 
   def show

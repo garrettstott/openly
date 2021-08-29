@@ -1,8 +1,9 @@
-a, a:link, a:visited, a:active {
+a, a:link, a:visited, a:active, .turbo-link {
   color: deepskyblue;
   text-decoration: none;
+  cursor: pointer;
 }
 
-a:hover {
+a:hover, .turbo-link:hover {
   color: deeppink;
 }

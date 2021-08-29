@@ -69,6 +69,8 @@ Rails.application.routes.draw do
 
   post '/leadership', to: 'chiefs#create', as: 'chiefs'
 
+  patch '/leadership/:id', to: 'chiefs#update'
+
   ###############################################
   # ADMIN
   ###############################################
