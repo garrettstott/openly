@@ -2,12 +2,12 @@
 #
 # Table name: ratings
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  score      :integer          default(0), not null
 #  style      :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  review_id  :integer          not null
+#  review_id  :bigint           not null
 #
 # Indexes
 #
@@ -15,7 +15,7 @@
 #
 # Foreign Keys
 #
-#  review_id  (review_id => reviews.id)
+#  fk_rails_...  (review_id => reviews.id)
 #
 class Rating < ApplicationRecord
 
@@ -23,7 +23,7 @@ class Rating < ApplicationRecord
 
   validates_presence_of :review, :score, :style
 
-  enum style: {culture: 0, diversity: 1, integrity: 2, respect: 3}
+  enum style: {culture: 0, diversity: 1, integrity: 2, respect: 3, salary: 4, benefits: 5}
 
   after_save :calculate_review_score
 

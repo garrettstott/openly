@@ -1,8 +1,8 @@
 <div id='navbar'>
   <div class='flex sb navbar-interior'>
-    <div class='nav-left flex-2'>
+    <div class='nav-left flex flex-3'>
       <%= link_to root_path do %>
-        <div class='logo flex'>
+        <div class='logo flex mr-16'>
           <svg width="143" height="32" viewBox="0 0 143 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0)">
               <path d="M15.4479 15.455C15.6068 15.455 15.7693 15.4767 15.9282 15.4767C16.0872 15.4767 16.2497 15.4767 16.4086 15.455C16.5367 14.0078 17.1739 12.6528 18.2069 11.6311C19.2399 10.6094 20.6017 9.98704 22.0503 9.87476C22.0683 9.69417 22.0792 9.51357 22.0792 9.32576C22.0791 8.51343 21.9179 7.70919 21.6048 6.95962C21.2917 6.21006 20.833 5.53007 20.2552 4.95905L15.9282 0L11.594 4.95905C11.0195 5.53156 10.5641 6.21222 10.2542 6.96172C9.94421 7.71122 9.7858 8.5147 9.78811 9.32576C9.78811 9.50996 9.78811 9.68694 9.81339 9.87476C11.2607 9.98867 12.6208 10.6117 13.6523 11.6333C14.6838 12.6549 15.32 14.0089 15.4479 15.455Z" fill="black"/>
@@ -24,15 +24,24 @@
           </svg>
         </div>
       <% end %>
+      <div class='ml-16 links margin-auto-v'>
+        <%= link_to('Companies', companies_path) %>
+        <%= link_to('About', companies_path) %>
+        <%= link_to('Lists', companies_path) %>
+        <%= link_to('Jobs', companies_path) %>
+      </div>
     </div>
     <% if admin_signed_in? %>
-      <div class='nav-middle sb flex flex-5'>
-        <span><%= current_user.email %></span>
-        <span>Role: <%= current_user.role %></span>
-        <div>
-          <%= link_to('Moderator', moderator_path, class: 'btn btn-danger') %>
+      <div class='nav-middle flex flex-2 flex-right'>
+        <span class='mr-16 margin-auto-v'>
+          <%= current_user.email %>
+          <br/>
+          Role: <%= current_user.role %>
+        </span>
+        <div class='margin-auto-v'>
+          <%= link_to('Moderator', moderator_path) %>
           <% if current_user.uber? %>
-            <%= link_to('System', system_path, class: 'btn btn-danger') %>
+            <%= link_to('System', system_path) %>
           <% end %>
         </div>
       </div>

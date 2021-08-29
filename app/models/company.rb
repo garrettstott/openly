@@ -2,16 +2,16 @@
 #
 # Table name: companies
 #
-#  id             :integer          not null, primary key
-#  about          :text
+#  id             :bigint           not null, primary key
+#  about          :text(65535)
 #  approved       :boolean          default(FALSE), not null
 #  created_by     :integer          not null
 #  denied         :boolean          default(FALSE), not null
 #  employee_count :integer
 #  founded        :integer
-#  industry       :string
-#  name           :string           not null
-#  website        :string
+#  industry       :string(255)
+#  name           :string(255)      not null
+#  website        :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

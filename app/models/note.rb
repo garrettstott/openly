@@ -2,10 +2,10 @@
 #
 # Table name: notes
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  created_by    :integer          not null
-#  message       :text
-#  noteable_type :string
+#  message       :text(65535)
+#  noteable_type :string(255)
 #  style         :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null

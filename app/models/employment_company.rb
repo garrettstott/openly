@@ -2,16 +2,16 @@
 #
 # Table name: employment_companies
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  current    :boolean          default(TRUE), not null
 #  end_date   :date
-#  job_title  :string           not null
+#  job_title  :string(255)      not null
 #  salary     :integer
 #  start_date :date             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  company_id :integer          not null
-#  user_id    :integer          not null
+#  company_id :bigint           not null
+#  user_id    :bigint           not null
 #
 # Indexes
 #
@@ -20,8 +20,8 @@
 #
 # Foreign Keys
 #
-#  company_id  (company_id => companies.id)
-#  user_id     (user_id => users.id)
+#  fk_rails_...  (company_id => companies.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class EmploymentCompany < ApplicationRecord
 

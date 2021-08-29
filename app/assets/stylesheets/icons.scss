@@ -24,8 +24,18 @@
   position: relative;
   display: inline-block;
   color: $Gold;
+  height: 1.3em;
   font-size: 1.3em;
-  margin-top: 8px;
+  margin-left: 120px;
+}
+
+.stars {
+  position: relative;
+  span {
+    top: 10%;
+    left: 0;
+    position: absolute;
+  }
 }
 
 .outer-stars.denied {

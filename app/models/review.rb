@@ -2,18 +2,18 @@
 #
 # Table name: reviews
 #
-#  id               :integer          not null, primary key
+#  id               :bigint           not null, primary key
 #  approved         :boolean          default(FALSE), not null
 #  denied           :boolean          default(FALSE), not null
-#  message          :text             not null
-#  overall_rating   :float            default(0.0), not null
-#  previous_message :text
+#  message          :text(65535)      not null
+#  overall_rating   :float(24)        default(0.0), not null
+#  previous_message :text(65535)
 #  thumbs           :integer          default(0), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  chief_id         :integer
-#  company_id       :integer          not null
-#  user_id          :integer          not null
+#  chief_id         :bigint
+#  company_id       :bigint           not null
+#  user_id          :bigint           not null
 #
 # Indexes
 #
@@ -23,9 +23,9 @@
 #
 # Foreign Keys
 #
-#  chief_id    (chief_id => chiefs.id)
-#  company_id  (company_id => companies.id)
-#  user_id     (user_id => users.id)
+#  fk_rails_...  (chief_id => chiefs.id)
+#  fk_rails_...  (company_id => companies.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class Review < ApplicationRecord
 

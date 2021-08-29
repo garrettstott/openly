@@ -8,9 +8,9 @@ def decide(object)
   end
 end
 
-Company.find_each do |company|
-  decide(company)
-end
+# Company.find_each do |company|
+#   decide(company)
+# end
 
 Review.find_each do |review|
   decide(review)

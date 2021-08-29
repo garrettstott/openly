@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_08_09_232207) do
 
-  create_table "addresses", force: :cascade do |t|
+  create_table "addresses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "addressable_id", null: false
     t.string "addressable_type", null: false
     t.string "line1"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.index ["addressable_type"], name: "index_addresses_on_addressable_type"
   end
 
-  create_table "chiefs", force: :cascade do |t|
-    t.integer "company_id", null: false
+  create_table "chiefs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "company_id", null: false
     t.integer "created_by", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.index ["created_by"], name: "index_chiefs_on_created_by"
   end
 
-  create_table "companies", force: :cascade do |t|
+  create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.integer "founded"
     t.string "website"
@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.index ["created_by"], name: "index_companies_on_created_by"
   end
 
-  create_table "employment_companies", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "company_id", null: false
+  create_table "employment_companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
     t.boolean "current", default: true, null: false
     t.date "start_date", null: false
     t.date "end_date"
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.index ["user_id"], name: "index_employment_companies_on_user_id"
   end
 
-  create_table "job_listings", force: :cascade do |t|
-    t.integer "company_id", null: false
+  create_table "job_listings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "company_id", null: false
     t.string "job_title"
     t.string "salary"
     t.text "description"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.index ["company_id"], name: "index_job_listings_on_company_id"
   end
 
-  create_table "notes", force: :cascade do |t|
+  create_table "notes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "message"
     t.integer "style", null: false
     t.integer "created_by", null: false
@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.index ["noteable_type"], name: "index_notes_on_noteable_type"
   end
 
-  create_table "ratings", force: :cascade do |t|
-    t.integer "review_id", null: false
+  create_table "ratings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "review_id", null: false
     t.integer "style", null: false
     t.integer "score", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -104,10 +104,10 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.index ["review_id"], name: "index_ratings_on_review_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "company_id", null: false
-    t.integer "chief_id"
+  create_table "reviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
+    t.bigint "chief_id"
     t.text "message", null: false
     t.text "previous_message"
     t.integer "thumbs", default: 0, null: false
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

@@ -6,7 +6,7 @@
   <% end %>
   Notes
 </h3>
-<% record.notes.order(:created_at, :desc).each do |note| %>
+<% record.notes.order(created_at: :desc).each do |note| %>
   <div class='card'>
     <div class='flex sb'>
       <span><%= note.nice_date_full(note.created_at) %> : <%= note.created_by_user %></span>

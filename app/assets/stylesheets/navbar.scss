@@ -16,6 +16,13 @@
     background-clip: padding-box;
     background: $White;
     border-bottom: 1px solid $Grey;
+    .links {
+      a {
+        color: $Black;
+        margin-right: 32px;
+        font-size: 1.2em;
+      }
+    }
   }
   .nav-left, .nav-right, .nav-middle {
     margin: auto 0;

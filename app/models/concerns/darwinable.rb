@@ -11,9 +11,8 @@ module Darwinable
 
   def calculate_company(company)
     Rails.cache.fetch("#{company.id}_reviews_user_ids") do
-      company.reviews.pluck(:user_id)
+      calculate_graph_data(company.reviews.pluck(:user_id), company)
     end
-    calculate_graph_data(users, company)
   end
 
   # TODO DRY

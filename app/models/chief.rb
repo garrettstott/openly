@@ -2,17 +2,17 @@
 #
 # Table name: chiefs
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  approved   :boolean          default(FALSE), not null
 #  created_by :integer          not null
 #  current    :boolean          default(TRUE), not null
 #  denied     :boolean          default(FALSE), not null
-#  first_name :string           not null
-#  last_name  :string           not null
+#  first_name :string(255)      not null
+#  last_name  :string(255)      not null
 #  title      :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  company_id :integer          not null
+#  company_id :bigint           not null
 #
 # Indexes
 #
@@ -21,7 +21,7 @@
 #
 # Foreign Keys
 #
-#  company_id  (company_id => companies.id)
+#  fk_rails_...  (company_id => companies.id)
 #
 class Chief < ApplicationRecord
 

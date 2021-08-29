@@ -17,12 +17,10 @@ module Rateable
   def get_rating(style: nil)
     num = 0
     if %w(Company Chief).include?(self.class.to_s)
-      Rails.cache.fetch("#{self.id}_#{self.class.to_s}_#{style}_score") do
-        get_rating_by_style(style)
-      end
+      num = get_rating_by_style(style)
     elsif self.class == Review
       Rails.cache.fetch("#{self.id}_review_#{style}_score") do
-        self.ratings.where(style: style).last.score rescue 0
+        return self.ratings.where(style: style).last.score rescue 0
       end
     end
     num
@@ -69,7 +67,7 @@ module Rateable
 
   # TODO cache this
   def get_rating_by_style(style)
-    Rails.cache.fetch("#{self.class.to_s}_review_scores") do
+    Rails.cache.fetch("#{self.class.to_s}_#{self.id}_#{style}_review_scores") do
       calculate_average(self.ratings.where(style: style).pluck(:score))
     end
   end

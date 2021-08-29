@@ -2,14 +2,14 @@
 #
 # Table name: addresses
 #
-#  id               :integer          not null, primary key
-#  addressable_type :string           not null
-#  city             :string           not null
-#  country          :string           not null
-#  line1            :string
-#  line2            :string
-#  postal_code      :string           not null
-#  region           :string           not null
+#  id               :bigint           not null, primary key
+#  addressable_type :string(255)      not null
+#  city             :string(255)      not null
+#  country          :string(255)      not null
+#  line1            :string(255)
+#  line2            :string(255)
+#  postal_code      :string(255)      not null
+#  region           :string(255)      not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  addressable_id   :integer          not null

@@ -2,14 +2,14 @@
 #
 # Table name: job_listings
 #
-#  id          :integer          not null, primary key
-#  description :text
-#  job_title   :string
+#  id          :bigint           not null, primary key
+#  description :text(65535)
+#  job_title   :string(255)
 #  job_type    :integer
-#  salary      :string
+#  salary      :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  company_id  :integer          not null
+#  company_id  :bigint           not null
 #
 # Indexes
 #
@@ -17,7 +17,7 @@
 #
 # Foreign Keys
 #
-#  company_id  (company_id => companies.id)
+#  fk_rails_...  (company_id => companies.id)
 #
 class JobListing < ApplicationRecord
 
