@@ -1,0 +1,30 @@
+<div>
+  <% @jobs.each do |job| %>
+    <div>
+      <% if @company.nil? %>
+        <div>
+          <h3><%= job.company.name %></h3>
+        </div>
+      <% end %>
+      <div>
+        Job Title <%= job.job_title %>
+      </div>
+      <div>
+        Location <%= job.location %>
+      </div>
+      <div>
+        Job Type <%= job.job_type_nice %>
+      </div>
+      <div>
+        Salary <%= job.salary %>
+      </div>
+      <div>
+        Description
+        <p><%= job.description %></p>
+      </div>
+      <div>
+        <button class='btn'>Apply</button>
+      </div>
+    </div>
+  <% end %>
+</div>
