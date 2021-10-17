@@ -27,7 +27,7 @@ class SystemController < ApplicationController
   end
 
   def dashboard
-    @data = Company.system_user_graph_data
+    @data = Darwinable.calculate_companies
   end
 
   private

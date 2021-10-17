@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @data = @company.user_graph_data unless request.format.to_s.include?('turbo-stream')
+    @data = Darwinable.calculate_company(@company) unless request.format.to_s.include?('turbo-stream')
     @pagy, @reviews = pagy(@reviews, items: 10)
     respond_to do |f|
       f.turbo_stream
