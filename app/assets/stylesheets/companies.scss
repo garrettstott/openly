@@ -25,30 +25,30 @@
 
 #company-show {
   .hero {
-    min-height: 40vh;
-    background: darken($White, 10%);
-    margin: -2px -16px 0 -16px;
-    padding: 32px 64px;
-    .hero-section {
-      width: 100%;
+    height: 180px;
+    background: linear-gradient(0deg, rgba(21, 42, 85, 0.6), rgba(21, 42, 85, 0.6)), url('CompanyDefault.png') center center no-repeat, #C4C4C4;
+    mix-blend-mode: luminosity;
+    margin: -2px -16px 60px -16px;
+    position: relative;
+    .name, .logo {
+      position: absolute;
     }
-    .info-section {
-      background: $White;
+    .name {
+      left: calc(64px + 120px + 16px);
+      bottom: 22px;
+      color: $White;
+      font-size: 2.2em;
+      text-shadow: 0 0 1px rgba(0, 35, 64, 1);
+    }
+    .logo {
+      left: 64px;
+      top: 100px;
+      height: 80px;
+      width: 80px;
+      border: 20px solid $White;
+      box-shadow: 0 0 4px 1px rgba(0, 35, 64, 0.32);
       border-radius: 12px;
-      padding: 64px 32px 32px 32px;
-      .percentage {
-        font-size: 5em;
-      }
-      div {
-        text-align: center;
-        margin: 0 auto 32px auto;
-        * {
-          display: inline-block;
-        }
-      }
-    }
-    h1 {
-      margin: 0 0 32px 0;
+      background: url('CompanyLogoDefault.png') center / contain no-repeat, $White;
     }
   }
 }

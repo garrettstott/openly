@@ -1,57 +1,63 @@
+<div class='flex sb'>
+  <!--      TODO add note      -->
+  <% if admin_signed_in? %>
+    <div class='flex'>
+      <% if @company.approved %>
+        <%= @company.approved_icon %> Approved
+        <%= link_to('Deny', company_deny_path(@company), method: :put, class: 'btn btn-danger') %>
+      <% elsif @company.denied %>
+        <%= @company.approved_icon %> Denied
+        <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
+      <% else %>
+        Awaiting
+        <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
+      <% end %>
+      <%= link_to('EDIT', edit_company_path(@company), class: 'btn') %>
+    </div>
+  <% end %>
+</div>
+
 <div id='company-show'>
   <div class='hero'>
-    <div class='flex sb'>
-      <div></div>
-      <!--      TODO add note      -->
-      <% if admin_signed_in? %>
-        <div class='flex'>
-          <% if @company.approved %>
-            <%= @company.approved_icon %> Approved
-            <%= link_to('Deny', company_deny_path(@company), method: :put, class: 'btn btn-danger') %>
-          <% elsif @company.denied %>
-            <%= @company.approved_icon %> Denied
-            <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
-          <% else %>
-            Awaiting
-            <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
-          <% end %>
-          <%= link_to('EDIT', edit_company_path(@company), class: 'btn') %>
-        </div>
-      <% end %>
+    <div class='logo'>
+      &nbsp;
     </div>
-    <div class='flex hero-section'>
-      <div class='flex flex-column flex-05'>
-        <h1><%= @company.name %></h1>
-        <div class='flex flex-column'>
-          <div class='mb-32'><%= @company.about %></div>
-          <div>
-            Website
-            <%= link_to(@company.website, @company.website, target: '_blank') %>
-          </div>
-          <div>
-            Founded
-            <%= @company.founded %>
-          </div>
-          <div>
-            Industry
-            <%= @company.industry %>
-          </div>
-          <div>
-            Employees
-            <%= @company.employee_count %>
-          </div>
-          <div>
-            Location
-            <%= @company.location %>
-          </div>
+    <div class='name'>
+      <%= @company.name %>
+    </div>
+  </div>
+
+  <div class='flex'>
+    <div class='flex flex-column flex-05'>
+      <div class='flex flex-column'>
+        <div class='mb-32'><%= @company.about %></div>
+        <div>
+          Website
+          <%= link_to(@company.website, @company.website, target: '_blank') %>
+        </div>
+        <div>
+          Founded
+          <%= @company.founded %>
+        </div>
+        <div>
+          Industry
+          <%= @company.industry %>
+        </div>
+        <div>
+          Employees
+          <%= @company.employee_count %>
+        </div>
+        <div>
+          Location
+          <%= @company.location %>
         </div>
       </div>
-      <div class='flex flex-05 flex-column'>
-        <div class='info-section margin-auto-h'>
-          <div class='percentage'>54%</div>
-          <div>Overall satisfaction score for PoC and Women</div>
-          <div><button class='btn'>See breakdown of data</button></div>
-        </div>
+    </div>
+    <div class='flex flex-05 flex-column'>
+      <div class='margin-auto-h'>
+        <div class='percentage'>54%</div>
+        <div>Overall satisfaction score for PoC and Women</div>
+        <div><button class='btn'>See breakdown of data</button></div>
       </div>
     </div>
   </div>
