@@ -60,6 +60,11 @@ class Company < ApplicationRecord
     end
   end
 
+  def logo
+    Rails.cache.clear
+    ActionController::Base.helpers.asset_path('CompanyLogoDefault.png')
+  end
+
   def self.employee_counts_for_forms
     self.employee_counts.keys.map { |t| [t, t] }
   end

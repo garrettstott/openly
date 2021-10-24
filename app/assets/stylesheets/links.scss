@@ -7,3 +7,8 @@ a, a:link, a:visited, a:active, .turbo-link {
 a:hover, .turbo-link:hover {
   color: deeppink;
 }
+
+.turbo-link.highlight:hover, a.highlight:hover {
+  cursor: default;
+  color: $Highlight;
+}

@@ -1,4 +1,4 @@
-names = %w(Verisys Adobe)
+names = %w(Verisys Adobe Microsoft Amazon Twitter Starbucks HBO Netflix)
 # 20.times.each do |i|
 #   name = Faker::Company.name
 #   puts "Create Company: #{name}"

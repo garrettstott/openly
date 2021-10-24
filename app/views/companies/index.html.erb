@@ -8,7 +8,11 @@
   <div class='flex flex-flow-wrap'>
     <% @companies.each do |company| %>
       <%= link_to(company_path(company), class: 'flex-1 card') do %>
-        <h3><%= company.name %></h3>
+        <div class='flex sb'>
+          <%= image_tag(company.logo, class: 'logo') %>
+          <h3><%= company.name %></h3>
+        </div>
+
         <div class='flex flex-column card-section'>
           <%= render('ratings/stars', record: company) %>
           (<%= company.review_count %> Reviews)
@@ -17,5 +21,8 @@
     <% end %>
   </div>
   <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-  <%= link_to('Add A Company', new_company_path, class: 'btn') %>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+  <p>
+    Don't see your company? <%= link_to('Add A Company', new_company_path) %>
+  </p>
 </div>

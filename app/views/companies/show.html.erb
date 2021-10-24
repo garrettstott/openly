@@ -114,11 +114,11 @@
     <%#= pie_chart @data["poc"] %>
   </div>
 
-  <div class='flex flex-column width-50' id='scroll'>
+  <div class='flex flex-column' id='scroll'>
     <h3>Reviews</h3>
     <div data-controller="sort">
       <div id='reviews'>
-        <div class='flex sb'>
+        <div class='flex width-50 sb'>
           <% ['new_to_old', 'old_to_new', 'highest_rated', 'most_helpful'].each do |sort| %>
             <div
               data-action='click->sort#sortData'
@@ -129,7 +129,9 @@
             </div>
           <% end %>
         </div>
-        <%= render partial: 'reviews/reviews', formats: [:html], locals: {account: false} %>
+        <div class='flex flex-column sb'>
+          <%= render partial: 'reviews/reviews', formats: [:html], locals: {account: false} %>
+        </div>
         <div>
           <%== pagy_nav(@pagy) %>
         </div>

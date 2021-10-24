@@ -15,8 +15,11 @@
   }
   .card {
     flex-basis: 31.6%;
-    max-width: 31.6%;
     margin: 2px 3.3px;
+    .logo {
+      height: 100px;
+      width: 100px;
+    }
     .card-section {
       color: $Black;
     }

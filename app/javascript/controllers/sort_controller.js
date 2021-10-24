@@ -11,7 +11,11 @@ export default class extends Controller {
   pageClick(event) {
     event.preventDefault()
     this.loadSortData(event.target.href)
-    document.getElementById("reviews").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    const id = 'reviews';
+    const yOffset = -110;
+    const element = document.getElementById(id);
+    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({top: y, behavior: 'smooth'});
   }
 
   loadSortData(uri) {
