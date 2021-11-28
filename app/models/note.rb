@@ -25,7 +25,7 @@ class Note < ApplicationRecord
 
   validates_presence_of :message, :style, :created_by
 
-  enum style: {denial_reason: 0, response: 1, general: 2}
+  enum style: { denial_reason: 0, response: 1, general: 2, review_message: 3 }
 
   def self.styles_for_forms
     self.styles.keys.map { |s| [s.titleize, s] }

@@ -5,15 +5,19 @@
     <%= f.hidden_field :chief_id, value: @review.chief_id %>
 
     <%= f.fields_for :ratings do |ff| %>
-      <%= ff.hidden_field :style, value: ff.object.style %>
-      <%= ff.label ff.object.style, class: 'inline' %>
-      <%= ff.number_field :score, id: ff.object.style, class: 'hidden' %>
-      <div class="outer-stars">
-        <div class='inner-stars' id="inner-stars-<%= ff.object.style %>" style="width: <%= @review.star_width(num: ff.object.score) %>%">
-          <%= @review.stars(style: ff.object.style, num: 5) %>
-        </div>
-        <div class='inner-starso'>
-          <%= @review.starso(style: ff.object.style) %>
+      <div class='stars' style='display: block;'>
+        <%= ff.hidden_field :style, value: ff.object.style %>
+        <span>
+          <%= ff.label ff.object.style, class: 'inline' %>
+        </span>
+        <%= ff.number_field :score, id: ff.object.style, class: 'hidden' %>
+        <div class="outer-stars">
+          <div class='inner-stars' id="inner-stars-<%= ff.object.style %>" style="width: <%= @review.star_width(num: ff.object.score) %>%">
+            <%= @review.stars(style: ff.object.style, num: 5) %>
+          </div>
+          <div class='inner-starso' style='cursor: pointer;'>
+            <%= @review.starso(style: ff.object.style) %>
+          </div>
         </div>
       </div>
     <% end %>
@@ -23,8 +27,6 @@
     <%= f.submit('Submit For Approval') %>
   <% end %>
 </div>
-
-<div># TODO ADD RESPONSE NOTE</div>
 
 <script>
   for (const val of document.getElementsByClassName('fa-star')) {
@@ -71,7 +73,9 @@
 
   function setStarElementWidth(type, value) {
     let starElement = document.getElementById('inner-stars-' + type);
-    starElement.style.width = 20 * value + '%';
+    let width = 20 * value + '%';
+    starElement.style.width = width;
+    console.log(width)
   }
 
 </script>

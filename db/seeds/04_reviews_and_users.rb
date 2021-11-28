@@ -21,7 +21,7 @@ Company.find_each do |company|
       race: Faker::Demographic.race,
       orientation: Faker::Gender.type,
       email: "#{first_name}.#{last_name}@test.com",
-      password: Devise.friendly_token.first(12),
+      password: 'Testtest123!',
       confirmed_at: DateTime.now
     )
     if user.save

@@ -2,18 +2,17 @@
 #
 # Table name: reviews
 #
-#  id               :bigint           not null, primary key
-#  approved         :boolean          default(FALSE), not null
-#  denied           :boolean          default(FALSE), not null
-#  message          :text(65535)      not null
-#  overall_rating   :float(24)        default(0.0), not null
-#  previous_message :text(65535)
-#  thumbs           :integer          default(0), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  chief_id         :bigint
-#  company_id       :bigint           not null
-#  user_id          :bigint           not null
+#  id             :bigint           not null, primary key
+#  approved       :boolean          default(FALSE), not null
+#  denied         :boolean          default(FALSE), not null
+#  message        :text(65535)      not null
+#  overall_rating :float(24)        default(0.0), not null
+#  thumbs         :integer          default(0), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  chief_id       :bigint
+#  company_id     :bigint           not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #
@@ -52,7 +51,11 @@ class Review < ApplicationRecord
 
   def set_previous_message
     if self.will_save_change_to_message?
-      self.previous_message = self.message_was
+      self.notes.create(
+        message: self.message_was,
+        style: 'review_message',
+        created_by: self.user.id,
+      )
     end
   end
 
@@ -91,7 +94,7 @@ class Review < ApplicationRecord
   end
 
   def edited?
-    self.previous_message.present?
+    self.updated_at > self.created_at
   end
 
 end

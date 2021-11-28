@@ -16,20 +16,24 @@
 
 
 .outer-stars {
-  // TODO if any sizing changes, this will need to change
-  // this is the width of inner-starso div
-  // TODO js this shit
-  width: 141.583px;
   white-space: nowrap;
   position: relative;
   display: inline-block;
   color: $Gold;
   height: 1.3em;
   font-size: 1.3em;
-  margin-left: 120px;
+  margin-left: 4em;
+}
+
+.stars.overall {
+  font-size: 2em;
+  .outer-stars {
+    margin-left: 4em;
+  }
 }
 
 .stars {
+  display: inline-block;
   position: relative;
   span {
     top: 10%;

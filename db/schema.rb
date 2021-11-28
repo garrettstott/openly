@@ -109,7 +109,6 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.bigint "company_id", null: false
     t.bigint "chief_id"
     t.text "message", null: false
-    t.text "previous_message"
     t.integer "thumbs", default: 0, null: false
     t.float "overall_rating", default: 0.0, null: false
     t.boolean "approved", default: false, null: false

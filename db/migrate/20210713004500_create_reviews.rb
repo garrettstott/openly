@@ -6,7 +6,6 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.belongs_to :chief, foreign_key: true
 
       t.text :message, null: false
-      t.text :previous_message
       t.integer :thumbs, null: false, default: 0
       t.float :overall_rating, null: false, default: 0
 

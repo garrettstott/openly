@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
 
   def admin_show
     @user = User.find_by(id: params[:id])
+    @reviews = @user.reviews
     render :show
   end
 end
