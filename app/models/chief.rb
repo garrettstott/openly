@@ -2,22 +2,22 @@
 #
 # Table name: chiefs
 #
-#  id         :bigint           not null, primary key
-#  approved   :boolean          default(FALSE), not null
-#  created_by :integer          not null
-#  current    :boolean          default(TRUE), not null
-#  denied     :boolean          default(FALSE), not null
-#  first_name :string(255)      not null
-#  last_name  :string(255)      not null
-#  title      :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  company_id :bigint           not null
+#  id            :bigint           not null, primary key
+#  approved      :boolean          default(FALSE), not null
+#  current       :boolean          default(TRUE), not null
+#  denied        :boolean          default(FALSE), not null
+#  first_name    :string(255)      not null
+#  last_name     :string(255)      not null
+#  title         :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  company_id    :bigint           not null
+#  created_by_id :integer          not null
 #
 # Indexes
 #
-#  index_chiefs_on_company_id  (company_id)
-#  index_chiefs_on_created_by  (created_by)
+#  index_chiefs_on_company_id     (company_id)
+#  index_chiefs_on_created_by_id  (created_by_id)
 #
 # Foreign Keys
 #
@@ -31,6 +31,7 @@ class Chief < ApplicationRecord
   extend Queueable
 
   belongs_to :company
+  belongs_to :created_by, class_name: 'User'
 
   has_many :reviews
 

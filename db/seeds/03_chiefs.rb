@@ -6,7 +6,7 @@ Company.find_each do |company|
       last_name: Faker::Name.last_name,
       title: title,
       company: company,
-      created_by: User.first.id
+      created_by: User.first
       )
     unless chief.save
       puts chief.errors.full_messages.to_sentence

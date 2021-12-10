@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
 
   create_table "chiefs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "company_id", null: false
-    t.integer "created_by", null: false
+    t.integer "created_by_id", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.integer "title", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_chiefs_on_company_id"
-    t.index ["created_by"], name: "index_chiefs_on_created_by"
+    t.index ["created_by_id"], name: "index_chiefs_on_created_by_id"
   end
 
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -49,12 +49,12 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
     t.integer "employee_count"
     t.string "industry"
     t.text "about"
-    t.integer "created_by", null: false
+    t.integer "created_by_id", null: false
     t.boolean "approved", default: false, null: false
     t.boolean "denied", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["created_by"], name: "index_companies_on_created_by"
+    t.index ["created_by_id"], name: "index_companies_on_created_by_id"
   end
 
   create_table "employment_companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -85,12 +85,12 @@ ActiveRecord::Schema.define(version: 2021_08_09_232207) do
   create_table "notes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "message"
     t.integer "style", null: false
-    t.integer "created_by", null: false
+    t.integer "created_by_id", null: false
     t.integer "noteable_id"
     t.string "noteable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["created_by"], name: "index_notes_on_created_by"
+    t.index ["created_by_id"], name: "index_notes_on_created_by_id"
     t.index ["noteable_id"], name: "index_notes_on_noteable_id"
     t.index ["noteable_type"], name: "index_notes_on_noteable_type"
   end

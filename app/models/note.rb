@@ -3,17 +3,17 @@
 # Table name: notes
 #
 #  id            :bigint           not null, primary key
-#  created_by    :integer          not null
 #  message       :text(65535)
 #  noteable_type :string(255)
 #  style         :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  created_by_id :integer          not null
 #  noteable_id   :integer
 #
 # Indexes
 #
-#  index_notes_on_created_by     (created_by)
+#  index_notes_on_created_by_id  (created_by_id)
 #  index_notes_on_noteable_id    (noteable_id)
 #  index_notes_on_noteable_type  (noteable_type)
 #
@@ -21,6 +21,7 @@ class Note < ApplicationRecord
 
   include NiceDateable
 
+  belongs_to :created_by, class_name: 'User'
   belongs_to :noteable, polymorphic: true
 
   validates_presence_of :message, :style, :created_by

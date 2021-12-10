@@ -19,13 +19,15 @@
 #  index_addresses_on_addressable_id    (addressable_id)
 #  index_addresses_on_addressable_type  (addressable_type)
 #
-class Address < ApplicationRecord
+FactoryBot.define do
 
-  belongs_to :addressable, polymorphic: true
-  validates_presence_of :city, :region, :country, :postal_code
-
-
-  def short_address
-    "#{self.city}, #{self.region} #{self.country}"
+  factory :address do
+    association :addressable, factory: :job_listing
+    city { Faker::Address.city }
+    country { Faker::Address.country }
+    line1 { Faker::Address.street_address }
+    postal_code { Faker::Address.postcode }
+    region { Faker::Address.state }
   end
+
 end

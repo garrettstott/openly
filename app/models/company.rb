@@ -5,7 +5,6 @@
 #  id             :bigint           not null, primary key
 #  about          :text(65535)
 #  approved       :boolean          default(FALSE), not null
-#  created_by     :integer          not null
 #  denied         :boolean          default(FALSE), not null
 #  employee_count :integer
 #  founded        :integer
@@ -14,10 +13,11 @@
 #  website        :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  created_by_id  :integer          not null
 #
 # Indexes
 #
-#  index_companies_on_created_by  (created_by)
+#  index_companies_on_created_by_id  (created_by_id)
 #
 class Company < ApplicationRecord
 
@@ -31,6 +31,8 @@ class Company < ApplicationRecord
   validates_presence_of :name, :created_by
   validates_inclusion_of :denied, :approved, in: [true, false]
   validates_uniqueness_of :name
+
+  belongs_to :created_by, class_name: 'User'
 
   has_many :job_listings
   has_many :reviews

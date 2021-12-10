@@ -7,7 +7,7 @@ class CreateCompanies < ActiveRecord::Migration[6.1]
       t.integer :employee_count
       t.string :industry
       t.text :about
-      t.integer :created_by, null: false, index: true
+      t.integer :created_by_id, null: false, index: true
 
       t.boolean :approved, null: false, default: false
       t.boolean :denied, null: false, default: false

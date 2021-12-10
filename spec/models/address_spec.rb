@@ -19,13 +19,21 @@
 #  index_addresses_on_addressable_id    (addressable_id)
 #  index_addresses_on_addressable_type  (addressable_type)
 #
-class Address < ApplicationRecord
+require 'rails_helper'
 
-  belongs_to :addressable, polymorphic: true
-  validates_presence_of :city, :region, :country, :postal_code
+RSpec.describe Address, type: :model do
 
-
-  def short_address
-    "#{self.city}, #{self.region} #{self.country}"
+  context 'Validates correctly' do
+    let :address do
+      build(:address)
+    end
+    it 'is valid from factory' do
+      expect(address.valid?).to eq(true)
+    end
+    it 'returns no errors' do
+      address.valid?
+      expect(address.errors.full_messages).to eq([])
+    end
   end
+
 end
