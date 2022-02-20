@@ -3,7 +3,8 @@
 }
 
 .fa-check {
-  color: $Secondary;
+  color: $Gold;
+  filter: drop-shadow(0 1px 1px rgba(0, 35, 64, 0.32));
 }
 
 .fa-star {
@@ -26,7 +27,7 @@
 }
 
 .stars.overall {
-  font-size: 2em;
+  font-size: 1.4em;
   .outer-stars {
     margin-left: 4em;
   }

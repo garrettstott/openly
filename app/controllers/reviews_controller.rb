@@ -9,6 +9,10 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    unless @company.user_can_review(current_user)
+      set_flash_message(:warning, ["You cannot add a review for #{@company.name}", "Please add your employment history"])
+      redirect_to company_path(@company) and return
+    end
     @review = Review.new(
       company_id: @company.id,
       user_id: current_user.id,

@@ -67,6 +67,10 @@ class Company < ApplicationRecord
     ActionController::Base.helpers.asset_path('CompanyLogoDefault.png')
   end
 
+  def user_can_review(user)
+    user.employment_companies.where(company_id: self.id).any?
+  end
+
   def self.employee_counts_for_forms
     self.employee_counts.keys.map { |t| [t, t] }
   end

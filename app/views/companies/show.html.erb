@@ -1,8 +1,6 @@
 <div id='company-show'>
   <div class='hero'>
-    <div class='logo'>
-      &nbsp;
-    </div>
+    <div class='logo'></div>
     <div class='name'>
       <%= @company.name %>
     </div>
@@ -11,57 +9,58 @@
   <!--  ADMIN SECTION  -->
   <% if admin_signed_in? %>
     <!--      TODO add note      -->
-    <div class='flex flex-right mb-32' style='margin-top: -32px'>
-      <% if @company.approved %>
-        <%= @company.approved_icon %> Approved
-        <%= link_to('Deny', company_deny_path(@company), method: :put, class: 'btn btn-danger') %>
-      <% elsif @company.denied %>
-        <%= @company.approved_icon %> Denied
-        <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
-      <% else %>
-        Awaiting
-        <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn') %>
-      <% end %>
-      <%= link_to('EDIT', edit_company_path(@company), class: 'btn') %>
+    <div class='flex admin-container mb-32' style='margin-top: -32px'>
+      <div class='admin-fill'></div>
+      <div class='admin'>
+        <% if @company.approved %>
+          <span>
+            <%= @company.approved_icon %> Approved
+          </span>
+          <%= link_to('Deny', company_deny_path(@company), method: :put, class: 'btn btn-danger', data: { turbo: false }) %>
+        <% elsif @company.denied %>
+          <span>
+            <%= @company.approved_icon %> Denied
+          </span>
+          <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn', data: { turbo: false }) %>
+        <% else %>
+          Awaiting
+          <%= link_to('Approve', company_approve_path(@company), method: :put, class: 'btn', data: { turbo: false }) %>
+        <% end %>
+        <%= link_to('EDIT', edit_company_path(@company), class: 'btn') %>
+      </div>
     </div>
   <% end %>
 
-  <div class='flex'>
-    <div class='flex flex-column flex-05'>
-      <div class='flex flex-column'>
-        <div class='mb-32'><%= @company.about %></div>
-        <div>
-          Website
-          <%= link_to(@company.website, @company.website, target: '_blank') %>
-        </div>
-        <div>
-          Founded
-          <%= @company.founded %>
-        </div>
-        <div>
-          Industry
-          <%= @company.industry %>
-        </div>
-        <div>
-          Employees
-          <%= @company.employee_count %>
-        </div>
-        <div>
-          Location
-          <%= @company.location %>
-        </div>
+  <section class='flex sb'>
+    <div class='flex flex-column width-50 flex-spaced'>
+      <div>
+        <span>Website</span>
+        <span><%= link_to(@company.website, @company.website, target: '_blank') %></span>
+      </div>
+      <div>
+        <span>Founded</span>
+        <span><%= @company.founded %></span>
+      </div>
+      <div>
+        <span>Industry</span>
+        <span><%= @company.industry %></span>
+      </div>
+      <div>
+        <span>Employees</span>
+        <span><%= @company.employee_count %></span>
+      </div>
+      <div>
+        <span>Location</span>
+        <span><%= @company.location %></span>
       </div>
     </div>
-    <div class='flex flex-05 flex-column'>
-      <div class='margin-auto-h'>
-        <div class='percentage'>54%</div>
-        <div>Overall satisfaction score for PoC and Women</div>
-        <div><button class='btn'>See breakdown of data</button></div>
-      </div>
+    <div class='flex flex-column width-50'>
+      <h3>About</h3>
+      <%= @company.about %>
     </div>
-  </div>
+  </section>
 
-  <div class='flex'>
+  <section class='flex'>
     <div class='flex flex-column width-50'>
       <%= render "ratings/stars", record: @company %>
       (<%= @company.review_count %> Reviews)
@@ -71,12 +70,23 @@
         <%= render('notes/notes', record: @company) %>
       </div>
     <% end %>
-  </div>
+  </section>
 
-  <%= link_to("Review #{@company.name}", new_review_path(@company), class: 'btn') %>
+  <section>
+    <% if user_signed_in? %>
+      <% if @company.user_can_review(current_user) %>
+        <%= link_to("Review #{@company.name}", new_review_path(@company), class: 'btn') %>
+      <% else %>
+        <!--      TODO change link to add new employment        -->
+        <%= link_to("Add Employment to review #{@company.name}", new_review_path(@company), class: 'btn') %>
+      <% end %>
+    <% else %>
+      <%= link_to("Login to review #{@company.name}", new_user_session_path, class: 'btn') %>
+    <% end %>
+  </section>
 
-  <div class='leadership'>
-    <h3>Leadership</h3>
+  <section class='leadership'>
+    <h2>Leadership</h2>
     <div class='flex flex-row'>
       <% @company.approved_current_chiefs.each do |chief| %>
         <div class='section mr-16'>
@@ -92,14 +102,14 @@
       <% end %>
     </div>
     <%= link_to('Add Leadership', new_chief_path(@company)) %>
-  </div>
+  </section>
 
-  <div class='flex flex-column jobs'>
-    <h3>Jobs</h3>
+  <section class='flex flex-column jobs'>
+    <h2>Jobs</h2>
     <div><%= link_to("View #{@company.job_listings.count} Job Listings", company_job_listings_path(@company.name), class: 'btn') %></div>
-  </div>
+  </section>
 
-  <div class='data-charts'>
+  <section class='data-charts'>
     <h3>Gender</h3>
     <%= render('bar_chart', data: @data[:gender]) %>
     <%#= line_chart @data["gender"], id: 'gender-chart' %>
@@ -112,10 +122,10 @@
     <h3>Person of color</h3>
     <%= render('bar_chart', data: @data[:poc]) %>
     <%#= pie_chart @data["poc"] %>
-  </div>
+  </section>
 
-  <div class='flex flex-column' id='scroll'>
-    <h3>Reviews</h3>
+  <section class='flex flex-column' id='scroll'>
+    <h2>Reviews</h2>
     <div data-controller="sort">
       <div id='reviews'>
         <div class='flex width-50 sb'>
@@ -129,7 +139,7 @@
             </div>
           <% end %>
         </div>
-        <div class='flex flex-column sb'>
+        <div class='flex flex-column sb width-50'>
           <%= render partial: 'reviews/reviews', formats: [:html], locals: {account: false} %>
         </div>
         <div>
@@ -137,5 +147,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </div>

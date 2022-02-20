@@ -2,8 +2,7 @@
 @import 'variables';
 @import 'fonts';
 @import 'normalize';
-@import 'font_awesome5_webfont';
-@import 'companies';
+@import 'font_awesome5_webfont';  ;
 @import 'flash_messages';
 @import 'flex';
 @import 'general';
@@ -18,3 +17,9 @@
 @import 'buttons';
 @import 'custom';
 @import 'charts';
+
+/******************************************************
+MODELS
+******************************************************/
+@import 'companies';
+@import 'chiefs';

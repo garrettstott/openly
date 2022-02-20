@@ -1,14 +1,18 @@
-<div>
-  <div class='flex sb'>
-    <%= link_to("Back To #{@chief.company.name}", company_path(@chief.company), class: 'btn') %>
+<div id='chief'>
+  <% if admin_signed_in? %>
     <!--      TODO add note      -->
-    <% if admin_signed_in? %>
-      <div>
+    <div class='flex admin-container'>
+      <div class='admin-fill'></div>
+      <div class='admin'>
         <% if @chief.approved %>
-          <%= @chief.approved_icon %> Approved
+          <span>
+            <%= @chief.approved_icon %> Approved
+          </span>
           <%= link_to('Deny', chief_deny_path(@chief), method: :put, class: 'btn btn-danger') %>
         <% elsif @chief.denied %>
-          <%= @chief.approved_icon %>Denied
+          <span>
+            <%= @chief.approved_icon %> Denied
+          </span>
           <%= link_to('Approve', chief_approve_path(@chief), method: :put, class: 'btn') %>
         <% else %>
           Awaiting
@@ -16,15 +20,17 @@
         <% end %>
         <%= link_to('Edit', edit_chief_path(@chief), class: 'btn') %>
       </div>
-    <% end %>
+    </div>
+  <% end %>
+
+  <div class=''>
+    <%= link_to("Back To #{@chief.company.name}", company_path(@chief.company), class: 'btn') %>
   </div>
 
-  <h1>Leadership</h1>
+  <h1><%= @chief.full_name %></h1>
+  <h2><%= @chief.title_nice %> @ <%= link_to(@chief.company.name, company_path(@chief.company)) %></h2>
 
-  <h3><%= @chief.full_name %></h3>
-  <h3><%= @chief.title_nice %> @ <%= link_to(@chief.company.name, company_path(@chief.company)) %></h3>
-
-  <div class='flex'>
+  <div class='flex mb-16'>
     <div class='flex flex-column width-50'>
       <%= render "ratings/stars", record: @chief %>
       (<%= @chief.review_count %> Reviews)
@@ -35,8 +41,21 @@
       </div>
     <% end %>
   </div>
-  <%= link_to('Add A Review', new_chief_review_path(@chief.company, @chief), class: 'btn') %>
-  <div>
+
+  <div class='mb-16'>
+    <% if user_signed_in? %>
+      <% if @chief.company.user_can_review(current_user) %>
+        <%= link_to('Add A Review', new_chief_review_path(@chief.company, @chief), class: 'btn') %>
+      <% else %>
+        <!--      TODO change link to add new employment        -->
+        <%= link_to("Add Employment to #{@chief.company.name}", new_chief_review_path(@chief.company, @chief), class: 'btn') %>
+      <% end %>
+    <% else %>
+      <%= link_to("Login to review #{@chief.full_name}", new_user_session_path, class: 'btn') %>
+    <% end %>
+  </div>
+
+  <div class='flex flex-column width-50'>
     <%= render "reviews/reviews", account: false %>
   </div>
 </div>

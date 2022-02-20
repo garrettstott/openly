@@ -27,7 +27,7 @@
           <%= employment.nice_date(employment.start_date) %>
           -
           <% if employment.current %>
-            Currently Employer <%= employment.boolean_to_icon(employment.current) %>
+            Current Employer <%= employment.boolean_to_icon(employment.current) %>
           <% else %>
             <%= employment.nice_date(employment.end_date) %>
           <% end %>

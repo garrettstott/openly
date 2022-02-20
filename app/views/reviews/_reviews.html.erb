@@ -1,21 +1,15 @@
 <% @reviews.each do |review| %>
   <div class='section card'>
-    <div class='flex sb'>
-      <div>
-        <%#= review.id %>
-      </div>
-      <div>
-        <%= review.nice_date(review.created_at) %>
-      </div>
-    </div>
+    <div class='float-right'><%= review.nice_date(review.created_at) %></div>
     <div class='flex flex-column'>
       <%= render('ratings/stars', record: review) %>
     </div>
-    <div>
+    <div class='mt-16 mb-16'>
       <%= review.message %>
     </div>
     <div>
       Helpful <%= review.thumbs %> <i class='fa fa-thumbs-o-up'></i>
+      <div class='float-right'><%= review.user.employment_status(review.company) %></div>
     </div>
     <!--    OWNER SECTION    -->
     <% if account && current_user == review.user %>

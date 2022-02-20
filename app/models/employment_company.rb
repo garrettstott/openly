@@ -31,7 +31,8 @@ class EmploymentCompany < ApplicationRecord
   belongs_to :user
   belongs_to :company
 
-  validates_presence_of :start_date, :current, :job_title, :salary
+  validates_presence_of :start_date, :job_title, :salary
+  validates_inclusion_of :current, in: [true, false]
 
   before_save :format_job_title, :format_salary
 

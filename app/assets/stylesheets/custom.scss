@@ -50,3 +50,31 @@ html, body {
 .bold {
   font-weight: bold;
 }
+
+.float-right {
+  float: right;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+/******************************************************
+ADMIN
+******************************************************/
+
+.admin-container {
+  float: right;
+  .admin-fill {
+    flex-grow: 1;
+  }
+  .admin {
+    border: 1px solid $Grey;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    a {
+      margin-top: 8px;
+    }
+  }
+}

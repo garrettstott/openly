@@ -1,19 +1,25 @@
-.bar-chart {
-  .bar {
-    display: inline-block;
-    margin-right: 8px;
-    overflow: hidden;
-    white-space: nowrap;
+.data-charts {
+  h3 {
+    margin-bottom: 0;
   }
-  .bar:last-child {
-    margin-right: 0;
+  .bar-chart {
+    .bar {
+      display: inline-block;
+      margin-right: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .bar:last-child {
+      margin-right: 0;
+    }
+    .bar-header {
+    }
+    .bar-background {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
-  .bar-header {
-  }
-  .bar-background {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
 }

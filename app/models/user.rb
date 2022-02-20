@@ -41,6 +41,7 @@
 #
 class User < ApplicationRecord
 
+  include ActionView::Helpers::DateHelper
   extend Queueable
 
   # Include default devise modules. Others available are:
@@ -98,14 +99,24 @@ class User < ApplicationRecord
     self.employment_companies.order(current: :asc, start_date: :desc)
   end
 
-  def add_employment(company, start_date, current, job_title, salary = nil)
+  def add_employment(company, start_date, current, job_title, salary = nil, end_date = nil)
     self.employment_companies.create(
       company: company,
       start_date: start_date,
       current: current,
       job_title: job_title,
-      salary: salary
+      salary: salary,
+      end_date: end_date,
     )
+  end
+
+  def employment_status(company)
+    employments = self.employment_companies.where(company_id: company.id)
+    if employments.where(end_date: nil).any?
+      'Current Employee'
+    else
+      "Last Employed In #{employments.order(end_date: 'asc').last.end_date.year} "
+    end
   end
 
 end

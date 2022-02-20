@@ -27,6 +27,9 @@
 }
 
 #company-show {
+  section {
+    margin-bottom: 32px;
+  }
   .hero {
     height: 180px;
     background: linear-gradient(0deg, rgba(21, 42, 85, 0.6), rgba(21, 42, 85, 0.6)), url('CompanyDefault.png') center center no-repeat, #C4C4C4;
@@ -52,6 +55,18 @@
       box-shadow: 0 0 4px 1px rgba(0, 35, 64, 0.32);
       border-radius: 12px;
       background: url('CompanyLogoDefault.png') center / contain no-repeat, $White;
+    }
+  }
+  .flex-spaced {
+    div {
+      padding-bottom: 8px;
+      display: flex;
+      span:first-child {
+        flex: 1;
+      }
+      span {
+        flex: 5;
+      }
     }
   }
 }
