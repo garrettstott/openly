@@ -69,4 +69,12 @@
       }
     }
   }
+  .reviews {
+    flex-wrap: wrap;
+    .review {
+      flex: 48%;
+      width: 100%;
+      margin: 4px;
+    }
+  }
 }

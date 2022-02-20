@@ -1,5 +1,5 @@
 <% @reviews.each do |review| %>
-  <div class='section card'>
+  <div class='card review'>
     <div class='float-right'><%= review.nice_date(review.created_at) %></div>
     <div class='flex flex-column'>
       <%= render('ratings/stars', record: review) %>
